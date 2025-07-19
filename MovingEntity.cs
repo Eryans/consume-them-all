@@ -10,6 +10,7 @@ public partial class MovingEntity : Area3D
 	private Vector3 direction = Vector3.Zero;
 	private Player player;
 	private RandomNumberGenerator rdm = new();
+	private AnimationPlayer animationPlayer;
 	private enum State
 	{
 		Normal,
@@ -21,10 +22,19 @@ public partial class MovingEntity : Area3D
 	public override void _Ready()
 	{
 		player = (Player)GetTree().GetFirstNodeInGroup("Player");
+		animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
 	}
 
 	public override void _Process(double delta)
 	{
+		if (direction != Vector3.Zero)
+		{
+			animationPlayer.Play("MovementAnim");
+		}
+		else
+		{
+			animationPlayer.Play("Idle");
+		}
 		switch (currentState)
 		{
 			case State.Normal:
@@ -33,7 +43,8 @@ public partial class MovingEntity : Area3D
 				{
 					if (GlobalPosition.DistanceSquaredTo(player.GlobalPosition) < maxDistanceToPlayer)
 					{
-						float randomAngle = rdm.Randf() * 90f - 45f;
+						float randomAngleDeg = rdm.Randf() * 90f - 45f;
+						float randomAngle = Mathf.DegToRad(randomAngleDeg);
 						direction = (GlobalPosition - player.GlobalPosition).Normalized();
 						direction.Y = 0;
 						float x = direction.X;
@@ -49,6 +60,7 @@ public partial class MovingEntity : Area3D
 				if (GlobalPosition.DistanceSquaredTo(player.GlobalPosition) > maxDistanceToPlayer)
 				{
 					currentState = State.Normal;
+					direction = Vector3.Zero;
 				}
 				break;
 		}
