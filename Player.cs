@@ -21,6 +21,8 @@ public partial class Player : CharacterBody3D
 	private Timer stunedTimer = new();
 	private Vector3 stunedDirection = new();
 	private State currentState = State.Normal;
+	private Tween tw;
+	private Tween rtw;
 	public override void _Ready()
 	{
 		visual = GetNode<Node3D>("%Visual");
@@ -37,10 +39,20 @@ public partial class Player : CharacterBody3D
 
 	private void OnHitObstacle(Vector3 vector)
 	{
-		stunedTimer.Start(3);
+		stunedTimer.Start(stunedDuration);
 		stunedDirection = (GlobalPosition - vector).Normalized();
 		stunedDirection.Y = 0;
 		currentState = State.Stuned;
+		tw?.Kill();
+		tw = CreateTween();
+		rtw?.Kill();
+		rtw = CreateTween();
+		Vector3 originalScale = visual.Scale;
+		float originalRotation = visual.Rotation.Y;
+		int rotationLoop = 3;
+		rtw.TweenProperty(visual, "rotation:y", originalRotation + Mathf.DegToRad(360) * rotationLoop, 1).SetTrans(Tween.TransitionType.Sine);
+		tw.TweenProperty(visual, "scale", visual.Scale * 1.25f, .1f);
+		tw.TweenProperty(visual, "scale", originalScale, .5f).SetTrans(Tween.TransitionType.Bounce);
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -68,7 +80,7 @@ public partial class Player : CharacterBody3D
 				break;
 			case State.Stuned:
 				Velocity = stunedDirection * Speed;
-				visual.RotateY((float)delta * stunnedRotationForce);
+				// visual.RotateY((float)delta * stunnedRotationForce);
 				break;
 			case State.Dead:
 				break;
