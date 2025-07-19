@@ -15,7 +15,7 @@ height = 6.0
 radius = 1.54
 height = 6.0
 
-[node name="Player" type="CharacterBody3D"]
+[node name="Player" type="CharacterBody3D" groups=["Player"]]
 script = ExtResource("1_4flbx")
 Speed = 15.0
 

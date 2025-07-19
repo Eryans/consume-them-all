@@ -1,5 +1,6 @@
 using Godot;
 
+[GlobalClass]
 public partial class Consumable : Node
 {
 	public void Consume()

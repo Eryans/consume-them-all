@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=3 uid="uid://btebxwdonw7tr"]
+
+[ext_resource type="Script" uid="uid://cnvnv0jmxrofx" path="res://MovingEntity.cs" id="1_o33c0"]
+[ext_resource type="Script" uid="uid://qhuvmo1xlwo1" path="res://Consumable.cs" id="2_v7cii"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sxl1b"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_mak6n"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o33c0"]
+albedo_color = Color(1, 0.369473, 0.225814, 1)
+
+[node name="MovingEntity" type="Area3D"]
+script = ExtResource("1_o33c0")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_sxl1b")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_mak6n")
+surface_material_override/0 = SubResource("StandardMaterial3D_o33c0")
+
+[node name="Consumable" type="Node" parent="."]
+script = ExtResource("2_v7cii")
+metadata/_custom_type_script = "uid://qhuvmo1xlwo1"

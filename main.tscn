@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://bs7fac4gqq38d"]
+[gd_scene load_steps=9 format=3 uid="uid://bs7fac4gqq38d"]
 
 [ext_resource type="PackedScene" uid="uid://bx4os13hcq6ew" path="res://FollowCamera.tscn" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://cf716bjk3sjh6" path="res://player.tscn" id="2_h2yge"]
 [ext_resource type="PackedScene" uid="uid://bp00khgvv5w1" path="res://to_eat.tscn" id="3_h2yge"]
 [ext_resource type="PackedScene" uid="uid://0jl7h67g1gii" path="res://obstacle.tscn" id="4_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://btebxwdonw7tr" path="res://moving_entity.tscn" id="5_lquwl"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h2yge"]
 albedo_color = Color(0.603922, 0.721569, 0, 1)
@@ -150,3 +151,18 @@ shape = SubResource("BoxShape3D_lquwl")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Obstacle10"]
 mesh = SubResource("BoxMesh_7mycd")
+
+[node name="MovingEntity" parent="." instance=ExtResource("5_lquwl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1, 19)
+
+[node name="MovingEntity2" parent="." instance=ExtResource("5_lquwl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 1, 5)
+
+[node name="MovingEntity3" parent="." instance=ExtResource("5_lquwl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 1, -18)
+
+[node name="MovingEntity4" parent="." instance=ExtResource("5_lquwl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24, 1, 16)
+
+[node name="MovingEntity5" parent="." instance=ExtResource("5_lquwl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43, 1, 12)
