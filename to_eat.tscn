@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://bp00khgvv5w1"]
+
+[ext_resource type="Script" uid="uid://nu58xsl5mc7t" path="res://ToEat.cs" id="1_6sr5i"]
+[ext_resource type="PackedScene" uid="uid://ccfecc3cqxt3a" path="res://consumable.tscn" id="2_10yop"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_1bvp3"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lquwl"]
+
+[node name="ToEat" type="Area3D"]
+script = ExtResource("1_6sr5i")
+
+[node name="Consumable" parent="." instance=ExtResource("2_10yop")]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_1bvp3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_lquwl")

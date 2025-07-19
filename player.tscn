@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=3 uid="uid://cf716bjk3sjh6"]
+
+[ext_resource type="Script" uid="uid://ba8swiagxv6v4" path="res://Player.cs" id="1_4flbx"]
+[ext_resource type="Script" uid="uid://cykrgf2yaij0d" path="res://EntityDetector.cs" id="2_onrkg"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_h2yge"]
+radius = 1.5
+height = 6.0
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_0xm2m"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_ig7tw"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_onrkg"]
+radius = 1.54
+height = 6.0
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_4flbx")
+Speed = 15.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_h2yge")
+
+[node name="Visual" type="Node3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Visual"]
+mesh = SubResource("CapsuleMesh_0xm2m")
+skeleton = NodePath("../../root/@EditorNode@21394/@Panel@14/@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@26/DockVSplitCenter/@VSplitContainer@54/@VBoxContainer@55/@EditorMainScreen@102/MainScreen/@CanvasItemEditor@11634/@VSplitContainer@11286/@HSplitContainer@11288/@HSplitContainer@11290/@Control@11291/@SubViewportContainer@11292/@SubViewport@11293/Node3D/CharacterBody3D")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Visual"]
+transform = Transform3D(0.6, 0, 0, 0, 0.3, 0, 0, 0, 1, 0, 0.3, 0.2)
+mesh = SubResource("BoxMesh_ig7tw")
+skeleton = NodePath("../../root/@EditorNode@21394/@Panel@14/@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@26/DockVSplitCenter/@VSplitContainer@54/@VBoxContainer@55/@EditorMainScreen@102/MainScreen/@CanvasItemEditor@11634/@VSplitContainer@11286/@HSplitContainer@11288/@HSplitContainer@11290/@Control@11291/@SubViewportContainer@11292/@SubViewport@11293/Node3D")
+
+[node name="EntityDetector" type="Area3D" parent="."]
+script = ExtResource("2_onrkg")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EntityDetector"]
+shape = SubResource("CapsuleShape3D_onrkg")

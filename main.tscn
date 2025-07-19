@@ -1,0 +1,152 @@
+[gd_scene load_steps=8 format=3 uid="uid://bs7fac4gqq38d"]
+
+[ext_resource type="PackedScene" uid="uid://bx4os13hcq6ew" path="res://FollowCamera.tscn" id="1_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://cf716bjk3sjh6" path="res://player.tscn" id="2_h2yge"]
+[ext_resource type="PackedScene" uid="uid://bp00khgvv5w1" path="res://to_eat.tscn" id="3_h2yge"]
+[ext_resource type="PackedScene" uid="uid://0jl7h67g1gii" path="res://obstacle.tscn" id="4_1bvp3"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h2yge"]
+albedo_color = Color(0.603922, 0.721569, 0, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lquwl"]
+size = Vector3(5, 5, 5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_7mycd"]
+size = Vector3(5, 5, 5)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+material_override = SubResource("StandardMaterial3D_h2yge")
+use_collision = true
+collision_layer = 129
+collision_mask = 129
+size = Vector3(500, 1, 500)
+
+[node name="SpringArm3D" parent="." node_paths=PackedStringArray("target") instance=ExtResource("1_0xm2m")]
+transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 0, 0)
+target = NodePath("../Player")
+speed = 10.0
+
+[node name="Player" parent="." instance=ExtResource("2_h2yge")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.51987, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.258819, 0.965926, 0, -0.965926, 0.258819, 0, 14, 0)
+
+[node name="ToEat" parent="." instance=ExtResource("3_h2yge")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 2, 11)
+
+[node name="ToEat2" parent="." instance=ExtResource("3_h2yge")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.90825, 2, 11)
+
+[node name="ToEat3" parent="." instance=ExtResource("3_h2yge")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.0918, 2, -2)
+
+[node name="ToEat4" parent="." instance=ExtResource("3_h2yge")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.9082, 2, -12)
+
+[node name="ToEat5" parent="." instance=ExtResource("3_h2yge")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.0918, 2, -41)
+
+[node name="ToEat6" parent="." instance=ExtResource("3_h2yge")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.0918, 2, 21)
+
+[node name="ToEat7" parent="." instance=ExtResource("3_h2yge")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.9082, 2, 23)
+
+[node name="ToEat8" parent="." instance=ExtResource("3_h2yge")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -55.9082, 2, -18)
+
+[node name="ToEat9" parent="." instance=ExtResource("3_h2yge")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.9082, 2, -43)
+
+[node name="Obstacle" parent="." instance=ExtResource("4_1bvp3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44, 3, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacle"]
+shape = SubResource("BoxShape3D_lquwl")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Obstacle"]
+mesh = SubResource("BoxMesh_7mycd")
+
+[node name="Obstacle2" parent="." instance=ExtResource("4_1bvp3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 3, 17)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacle2"]
+shape = SubResource("BoxShape3D_lquwl")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Obstacle2"]
+mesh = SubResource("BoxMesh_7mycd")
+
+[node name="Obstacle3" parent="." instance=ExtResource("4_1bvp3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, 3, -14)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacle3"]
+shape = SubResource("BoxShape3D_lquwl")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Obstacle3"]
+mesh = SubResource("BoxMesh_7mycd")
+
+[node name="Obstacle4" parent="." instance=ExtResource("4_1bvp3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 3, -36)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacle4"]
+shape = SubResource("BoxShape3D_lquwl")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Obstacle4"]
+mesh = SubResource("BoxMesh_7mycd")
+
+[node name="Obstacle5" parent="." instance=ExtResource("4_1bvp3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33, 3, -14)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacle5"]
+shape = SubResource("BoxShape3D_lquwl")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Obstacle5"]
+mesh = SubResource("BoxMesh_7mycd")
+
+[node name="Obstacle6" parent="." instance=ExtResource("4_1bvp3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 3, 5)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacle6"]
+shape = SubResource("BoxShape3D_lquwl")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Obstacle6"]
+mesh = SubResource("BoxMesh_7mycd")
+
+[node name="Obstacle7" parent="." instance=ExtResource("4_1bvp3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34, 3, 12)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacle7"]
+shape = SubResource("BoxShape3D_lquwl")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Obstacle7"]
+mesh = SubResource("BoxMesh_7mycd")
+
+[node name="Obstacle8" parent="." instance=ExtResource("4_1bvp3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 3, 29)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacle8"]
+shape = SubResource("BoxShape3D_lquwl")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Obstacle8"]
+mesh = SubResource("BoxMesh_7mycd")
+
+[node name="Obstacle9" parent="." instance=ExtResource("4_1bvp3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 3, 35)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacle9"]
+shape = SubResource("BoxShape3D_lquwl")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Obstacle9"]
+mesh = SubResource("BoxMesh_7mycd")
+
+[node name="Obstacle10" parent="." instance=ExtResource("4_1bvp3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 71, 3, -48)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacle10"]
+shape = SubResource("BoxShape3D_lquwl")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Obstacle10"]
+mesh = SubResource("BoxMesh_7mycd")

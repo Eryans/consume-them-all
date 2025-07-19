@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://bx4os13hcq6ew"]
+
+[ext_resource type="Script" uid="uid://c2ireyfyjgyx3" path="res://CameraFollow.cs" id="1_7133y"]
+
+[sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_ig7tw"]
+
+[node name="SpringArm3D" type="SpringArm3D" node_paths=PackedStringArray("target")]
+transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 0, 0)
+collision_mask = 0
+shape = SubResource("SeparationRayShape3D_ig7tw")
+spring_length = 34.165
+margin = 5.115
+script = ExtResource("1_7133y")
+target = NodePath("")
+speed = 4.0
+
+[node name="Camera3D" type="Camera3D" parent="."]
+fov = 50.0
