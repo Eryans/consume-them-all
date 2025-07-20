@@ -4,6 +4,7 @@ using System;
 public partial class EntityDetector : Area3D
 {
 	public event Action<Vector3> OnHitObstacle;
+	public event Action<Node3D> OnConsumeEntity;
 	public override void _Ready()
 	{
 		BodyEntered += OnBodyEntered;
@@ -15,6 +16,7 @@ public partial class EntityDetector : Area3D
 		if (area.GetNodeOrNull<Consumable>("Consumable") is Consumable consumable1)
 		{
 			consumable1.Consume();
+			OnConsumeEntity?.Invoke((Node3D)consumable1.Owner);
 		}
 	}
 

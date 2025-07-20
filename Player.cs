@@ -16,19 +16,42 @@ public partial class Player : CharacterBody3D
 	public float Speed = 5.0f;
 	[Export]
 	private float stunedDuration = 2;
-	private const float stunnedRotationForce = 15;
+	[Export]
+	private float maxAliveTime = 30f;
 	private Node3D visual;
 	private Timer stunedTimer = new();
+	private Timer stayAliveTimer = new();
 	private Vector3 stunedDirection = new();
 	private State currentState = State.Normal;
 	private Tween tw;
 	private Tween rtw;
+	public event Action OnAteRewardableEntity;
+	public event Action OnPlayerDeath;
 	public override void _Ready()
 	{
 		visual = GetNode<Node3D>("%Visual");
-		GetNode<EntityDetector>("EntityDetector").OnHitObstacle += OnHitObstacle;
+		EntityDetector entityDetector = GetNode<EntityDetector>("EntityDetector");
+		entityDetector.OnHitObstacle += OnHitObstacle;
+		entityDetector.OnConsumeEntity += OnConsumeEntity;
 		AddChild(stunedTimer);
+		AddChild(stayAliveTimer);
+		stayAliveTimer.Start(maxAliveTime);
 		stunedTimer.Timeout += OnStunedTimerTimeout;
+		stayAliveTimer.Timeout += OnStayAliveTimerTimeout;
+	}
+
+	private void OnStayAliveTimerTimeout()
+	{
+		currentState = State.Dead;
+		OnPlayerDeath?.Invoke();
+	}
+
+	private void OnConsumeEntity(Node3D entity)
+	{
+		if (entity.IsInGroup("Consumable"))
+		{
+			OnAteRewardableEntity?.Invoke();
+		}
 	}
 
 	private void OnStunedTimerTimeout()
@@ -83,6 +106,7 @@ public partial class Player : CharacterBody3D
 				// visual.RotateY((float)delta * stunnedRotationForce);
 				break;
 			case State.Dead:
+				Velocity = Vector3.Zero;
 				break;
 		}
 		MoveAndSlide();
