@@ -6,6 +6,7 @@ public partial class GameManager : Node
 	private int maxConsumables;
 	public static GameManager Instance { get; private set; }
 	private Player player;
+	public event Action<bool> WinOrGameOverEvent;
 	public event EventHandler<GameDataEventArgs> UpdateGameDataEvent;
 	public class GameDataEventArgs : EventArgs
 	{
@@ -32,6 +33,7 @@ public partial class GameManager : Node
 	private void OnPlayerDeath()
 	{
 		// Game Over Logic
+		WinOrGameOverEvent?.Invoke(false);
 		GD.Print("game over");
 	}
 
@@ -47,6 +49,7 @@ public partial class GameManager : Node
 			{
 				// Win Condition
 				GD.Print("You win !");
+				WinOrGameOverEvent?.Invoke(true);
 				player.StayAliveTimer.Stop();
 			}
 		}).CallDeferred();
