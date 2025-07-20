@@ -1,27 +1,13 @@
-[gd_scene load_steps=13 format=3 uid="uid://bs7fac4gqq38d"]
+[gd_scene load_steps=7 format=3 uid="uid://bs7fac4gqq38d"]
 
 [ext_resource type="PackedScene" uid="uid://bx4os13hcq6ew" path="res://FollowCamera.tscn" id="1_0xm2m"]
 [ext_resource type="Script" uid="uid://cimcohihg0ya2" path="res://GameManager.cs" id="1_7mycd"]
 [ext_resource type="PackedScene" uid="uid://cf716bjk3sjh6" path="res://player.tscn" id="2_h2yge"]
-[ext_resource type="PackedScene" uid="uid://bp00khgvv5w1" path="res://to_eat.tscn" id="3_h2yge"]
-[ext_resource type="PackedScene" uid="uid://0jl7h67g1gii" path="res://obstacle.tscn" id="4_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://btebxwdonw7tr" path="res://moving_entity.tscn" id="5_lquwl"]
 [ext_resource type="PackedScene" uid="uid://cw1l3g7lrqlhq" path="res://control.tscn" id="7_272bh"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h2yge"]
 albedo_color = Color(0.603922, 0.721569, 0, 1)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_lquwl"]
-size = Vector3(5, 5, 5)
-
-[sub_resource type="BoxMesh" id="BoxMesh_7mycd"]
-size = Vector3(5, 5, 5)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_7mycd"]
-size = Vector3(5, 5, 25)
-
-[sub_resource type="BoxMesh" id="BoxMesh_272bh"]
-size = Vector3(5, 5, 25)
 
 [node name="Node3D" type="Node3D"]
 
@@ -45,209 +31,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.51987, 0)
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.258819, 0.965926, 0, -0.965926, 0.258819, 0, 14, 0)
 
-[node name="Level" type="Node3D" parent="."]
-
-[node name="ToEat" parent="Level" instance=ExtResource("3_h2yge")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 2, 11)
-
-[node name="ToEat2" parent="Level" instance=ExtResource("3_h2yge")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.90825, 2, 11)
-
-[node name="ToEat3" parent="Level" instance=ExtResource("3_h2yge")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.0918, 2, -2)
-
-[node name="ToEat4" parent="Level" instance=ExtResource("3_h2yge")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.9082, 2, -12)
-
-[node name="ToEat5" parent="Level" instance=ExtResource("3_h2yge")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.0918, 2, -41)
-
-[node name="ToEat6" parent="Level" instance=ExtResource("3_h2yge")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.0918, 2, 21)
-
-[node name="ToEat7" parent="Level" instance=ExtResource("3_h2yge")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.9082, 2, 23)
-
-[node name="ToEat8" parent="Level" instance=ExtResource("3_h2yge")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -55.9082, 2, -18)
-
-[node name="ToEat9" parent="Level" instance=ExtResource("3_h2yge")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.9082, 2, -43)
-
-[node name="Obstacle" parent="Level" instance=ExtResource("4_1bvp3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44, 3, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Obstacle"]
-shape = SubResource("BoxShape3D_lquwl")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Level/Obstacle"]
-mesh = SubResource("BoxMesh_7mycd")
-
-[node name="Obstacle2" parent="Level" instance=ExtResource("4_1bvp3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 3, 17)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Obstacle2"]
-shape = SubResource("BoxShape3D_lquwl")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Level/Obstacle2"]
-mesh = SubResource("BoxMesh_7mycd")
-
-[node name="Obstacle3" parent="Level" instance=ExtResource("4_1bvp3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, 3, -14)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Obstacle3"]
-shape = SubResource("BoxShape3D_7mycd")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Level/Obstacle3"]
-mesh = SubResource("BoxMesh_272bh")
-
-[node name="Obstacle4" parent="Level" instance=ExtResource("4_1bvp3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 3, -36)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Obstacle4"]
-shape = SubResource("BoxShape3D_lquwl")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Level/Obstacle4"]
-mesh = SubResource("BoxMesh_7mycd")
-
-[node name="Obstacle5" parent="Level" instance=ExtResource("4_1bvp3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33, 3, -14)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Obstacle5"]
-shape = SubResource("BoxShape3D_lquwl")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Level/Obstacle5"]
-mesh = SubResource("BoxMesh_7mycd")
-
-[node name="Obstacle6" parent="Level" instance=ExtResource("4_1bvp3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 3, 5)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Obstacle6"]
-shape = SubResource("BoxShape3D_lquwl")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Level/Obstacle6"]
-mesh = SubResource("BoxMesh_7mycd")
-
-[node name="Obstacle7" parent="Level" instance=ExtResource("4_1bvp3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34, 3, 12)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Obstacle7"]
-shape = SubResource("BoxShape3D_lquwl")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Level/Obstacle7"]
-mesh = SubResource("BoxMesh_7mycd")
-
-[node name="Obstacle8" parent="Level" instance=ExtResource("4_1bvp3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 3, 29)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Obstacle8"]
-shape = SubResource("BoxShape3D_lquwl")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Level/Obstacle8"]
-mesh = SubResource("BoxMesh_7mycd")
-
-[node name="Obstacle9" parent="Level" instance=ExtResource("4_1bvp3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 3, 35)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Obstacle9"]
-shape = SubResource("BoxShape3D_lquwl")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Level/Obstacle9"]
-mesh = SubResource("BoxMesh_7mycd")
-
-[node name="Obstacle10" parent="Level" instance=ExtResource("4_1bvp3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 71, 3, -48)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Obstacle10"]
-shape = SubResource("BoxShape3D_lquwl")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Level/Obstacle10"]
-mesh = SubResource("BoxMesh_7mycd")
-
-[node name="MovingEntity" parent="Level" instance=ExtResource("5_lquwl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1, 19)
-
-[node name="MovingEntity13" parent="Level" instance=ExtResource("5_lquwl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1, 10)
-
-[node name="MovingEntity14" parent="Level" instance=ExtResource("5_lquwl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 1, -1)
-
-[node name="MovingEntity15" parent="Level" instance=ExtResource("5_lquwl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 1, -5)
-
-[node name="MovingEntity16" parent="Level" instance=ExtResource("5_lquwl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1, -17)
-
-[node name="MovingEntity17" parent="Level" instance=ExtResource("5_lquwl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26, 1, -4)
-
-[node name="MovingEntity18" parent="Level" instance=ExtResource("5_lquwl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 1, 11)
-
-[node name="MovingEntity19" parent="Level" instance=ExtResource("5_lquwl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 1, -9)
-
-[node name="MovingEntity20" parent="Level" instance=ExtResource("5_lquwl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23, 1, -14)
-
-[node name="MovingEntity21" parent="Level" instance=ExtResource("5_lquwl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26, 1, -20)
-
-[node name="MovingEntity22" parent="Level" instance=ExtResource("5_lquwl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34, 1, 6)
-
-[node name="MovingEntity23" parent="Level" instance=ExtResource("5_lquwl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35, 1, 25)
-
-[node name="MovingEntity24" parent="Level" instance=ExtResource("5_lquwl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 1, 32)
-
-[node name="MovingEntity25" parent="Level" instance=ExtResource("5_lquwl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 1, 25)
-
-[node name="MovingEntity26" parent="Level" instance=ExtResource("5_lquwl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23, 1, 34)
-
-[node name="MovingEntity27" parent="Level" instance=ExtResource("5_lquwl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 1, 42)
-
-[node name="MovingEntity28" parent="Level" instance=ExtResource("5_lquwl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34, 1, 1)
-
-[node name="MovingEntity2" parent="Level" instance=ExtResource("5_lquwl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 1, 5)
-
-[node name="MovingEntity6" parent="Level" instance=ExtResource("5_lquwl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 1, -21)
-
-[node name="MovingEntity7" parent="Level" instance=ExtResource("5_lquwl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 1, -38)
-
-[node name="MovingEntity8" parent="Level" instance=ExtResource("5_lquwl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38, 1, 26)
-
-[node name="MovingEntity9" parent="Level" instance=ExtResource("5_lquwl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 1, 37)
-
-[node name="MovingEntity10" parent="Level" instance=ExtResource("5_lquwl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41, 1, 28)
-
-[node name="MovingEntity11" parent="Level" instance=ExtResource("5_lquwl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 1, -18)
-
-[node name="MovingEntity12" parent="Level" instance=ExtResource("5_lquwl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37, 1, -48)
-
-[node name="MovingEntity3" parent="Level" instance=ExtResource("5_lquwl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 1, -18)
-
-[node name="MovingEntity4" parent="Level" instance=ExtResource("5_lquwl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24, 1, 16)
-
-[node name="MovingEntity5" parent="Level" instance=ExtResource("5_lquwl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43, 1, 12)
-
 [node name="CSGBox3D2" type="CSGBox3D" parent="." groups=["Obstacle"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.5, 3.5, -7.5)
 layers = 3
@@ -260,6 +43,20 @@ size = Vector3(4, 6, 16)
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 11.5, 3.5, 18.3911)
 layers = 3
 use_collision = true
+collision_layer = 3
+collision_mask = 3
 size = Vector3(4, 6, 16)
 
 [node name="Control" parent="." instance=ExtResource("7_272bh")]
+
+[node name="MovingEntity" parent="." instance=ExtResource("5_lquwl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 2, 16)
+
+[node name="MovingEntity2" parent="." instance=ExtResource("5_lquwl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 2, 12)
+
+[node name="MovingEntity3" parent="." instance=ExtResource("5_lquwl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 2, 7)
+
+[node name="MovingEntity4" parent="." instance=ExtResource("5_lquwl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 2, 2)

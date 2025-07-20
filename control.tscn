@@ -55,7 +55,7 @@ text = "Tiny dudes left"
 
 [node name="TinyDudeCounter" type="RichTextLabel" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(250, 25)
+custom_minimum_size = Vector2(150, 25)
 layout_mode = 2
 text = "28/28"
 
@@ -75,6 +75,7 @@ layout_mode = 2
 text = "Energy left"
 
 [node name="ProgressBar" type="ProgressBar" parent="MarginContainer/VBoxContainer/MarginContainer3/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/fill = SubResource("StyleBoxFlat_7mycd")

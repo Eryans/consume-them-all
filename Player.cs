@@ -17,44 +17,44 @@ public partial class Player : CharacterBody3D
 	[Export]
 	private float stunedDuration = 2;
 	[Export]
-	private float maxAliveTime = 30f;
+	public float MaxAliveTime { get; private set; } = 30f;
 	private Node3D visual;
 	private Timer stunedTimer = new();
-	private Timer stayAliveTimer = new();
+	public Timer StayAliveTimer { get; private set; } = new();
 	private Vector3 stunedDirection = new();
 	private State currentState = State.Normal;
 	private Tween tw;
 	private Tween rtw;
-	public event Action OnAteRewardableEntity;
-	public event Action OnPlayerDeath;
+	public event Action AteRewardableEntityEvent;
+	public event Action PlayerDeathEvent;
 	public override void _Ready()
 	{
 		visual = GetNode<Node3D>("%Visual");
 		EntityDetector entityDetector = GetNode<EntityDetector>("EntityDetector");
-		entityDetector.OnHitObstacle += OnHitObstacle;
-		entityDetector.OnConsumeEntity += OnConsumeEntity;
+		entityDetector.HitObstacleEvent += OnHitObstacle;
+		entityDetector.ConsumeEntityEvent += OnConsumeEntity;
 		AddChild(stunedTimer);
-		AddChild(stayAliveTimer);
-		stayAliveTimer.Start(maxAliveTime);
+		AddChild(StayAliveTimer);
+		StayAliveTimer.Start(MaxAliveTime);
 		stunedTimer.Timeout += OnStunedTimerTimeout;
-		stayAliveTimer.Timeout += OnStayAliveTimerTimeout;
+		StayAliveTimer.Timeout += OnStayAliveTimerTimeout;
 	}
 
 	private void OnStayAliveTimerTimeout()
 	{
 		currentState = State.Dead;
-		stayAliveTimer.Stop();
-		OnPlayerDeath?.Invoke();
+		StayAliveTimer.Stop();
+		PlayerDeathEvent?.Invoke();
 	}
 
 	private void OnConsumeEntity(Node3D entity, int bonusTime)
 	{
 		if (entity.IsInGroup("Consumable"))
 		{
-			OnAteRewardableEntity?.Invoke();
-			float newTime = (float)Mathf.Clamp(stayAliveTimer.TimeLeft + bonusTime, 0, maxAliveTime);
-			stayAliveTimer.Stop();
-			stayAliveTimer.Start(newTime);
+			AteRewardableEntityEvent?.Invoke();
+			float newTime = (float)Mathf.Clamp(StayAliveTimer.TimeLeft + bonusTime, 0, MaxAliveTime);
+			StayAliveTimer.Stop();
+			StayAliveTimer.Start(newTime);
 		}
 	}
 

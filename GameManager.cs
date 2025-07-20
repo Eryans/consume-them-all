@@ -6,7 +6,7 @@ public partial class GameManager : Node
 	private int maxConsumables;
 	public static GameManager Instance { get; private set; }
 	private Player player;
-	public event EventHandler<GameDataEventArgs> OnUpdateGameData;
+	public event EventHandler<GameDataEventArgs> UpdateGameDataEvent;
 	public class GameDataEventArgs : EventArgs
 	{
 		public int consumablesLeft;
@@ -16,16 +16,16 @@ public partial class GameManager : Node
 	{
 		if (Instance != null && Instance != this)
 		{
-			GD.Print("WARNING : GameManager Instance alreadyExist ! overwriting current instance");
+			GD.Print("WARNING : GameManager Instance alreadyExist !");
 		}
 		Instance = this;
 		player = (Player)GetTree().GetFirstNodeInGroup("Player");
 		maxConsumables = GetTree().GetNodeCountInGroup("Consumable");
-		player.OnAteRewardableEntity += OnPlayerAteRewardableEntity;
-		player.OnPlayerDeath += OnPlayerDeath;
+		player.AteRewardableEntityEvent += OnPlayerAteRewardableEntity;
+		player.PlayerDeathEvent += OnPlayerDeath;
 		Callable.From(() =>
 		{
-			OnUpdateGameData?.Invoke(this, new GameDataEventArgs { maxConsumables = maxConsumables, consumablesLeft = maxConsumables });
+			UpdateGameDataEvent?.Invoke(this, new GameDataEventArgs { maxConsumables = maxConsumables, consumablesLeft = maxConsumables });
 		}).CallDeferred();
 	}
 
@@ -37,13 +37,19 @@ public partial class GameManager : Node
 
 	private void OnPlayerAteRewardableEntity()
 	{
-		int consumablesLeft = GetTree().GetNodeCountInGroup("Consumable");
-		OnUpdateGameData?.Invoke(this, new GameDataEventArgs { maxConsumables = maxConsumables, consumablesLeft = consumablesLeft });
-		if (consumablesLeft <= 0)
+		Callable.From(() =>
 		{
-			// Win Condition
-			GD.Print("You win !");
-		}
+			int consumablesLeft = GetTree().GetNodeCountInGroup("Consumable");
+			// I don't know why, but there is always one more entity in the group array
+			// Maybe a race condition ? 
+			UpdateGameDataEvent?.Invoke(this, new GameDataEventArgs { maxConsumables = maxConsumables, consumablesLeft = consumablesLeft - 1 });
+			if (consumablesLeft - 1 <= 0)
+			{
+				// Win Condition
+				GD.Print("You win !");
+				player.StayAliveTimer.Stop();
+			}
+		}).CallDeferred();
 	}
 
 	public override void _Process(double delta)

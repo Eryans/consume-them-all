@@ -3,8 +3,8 @@ using System;
 
 public partial class EntityDetector : Area3D
 {
-	public event Action<Vector3> OnHitObstacle;
-	public event Action<Node3D, int> OnConsumeEntity;
+	public event Action<Vector3> HitObstacleEvent;
+	public event Action<Node3D, int> ConsumeEntityEvent;
 	public override void _Ready()
 	{
 		BodyEntered += OnBodyEntered;
@@ -16,7 +16,7 @@ public partial class EntityDetector : Area3D
 		if (area.GetNodeOrNull<Consumable>("Consumable") is Consumable consumable1)
 		{
 			consumable1.Consume();
-			OnConsumeEntity?.Invoke((Node3D)consumable1.Owner, consumable1.BonusTime);
+			ConsumeEntityEvent?.Invoke((Node3D)consumable1.Owner, consumable1.BonusTime);
 		}
 	}
 
@@ -24,7 +24,7 @@ public partial class EntityDetector : Area3D
 	{
 		if (body is Obstacle || body.IsInGroup("Obstacle"))
 		{
-			OnHitObstacle?.Invoke(body.GlobalPosition);
+			HitObstacleEvent?.Invoke(body.GlobalPosition);
 		}
 	}
 }
