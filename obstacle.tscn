@@ -3,4 +3,6 @@
 [ext_resource type="Script" uid="uid://buckeud0htgci" path="res://Obstacle.cs" id="1_sl1jc"]
 
 [node name="Obstacle" type="StaticBody3D"]
+collision_layer = 3
+collision_mask = 3
 script = ExtResource("1_sl1jc")

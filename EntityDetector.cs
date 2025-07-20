@@ -20,9 +20,9 @@ public partial class EntityDetector : Area3D
 
 	private void OnBodyEntered(Node3D body)
 	{
-		if (body is Obstacle obstacle)
+		if (body is Obstacle || body.IsInGroup("Obstacle"))
 		{
-			OnHitObstacle?.Invoke(obstacle.GlobalPosition);
+			OnHitObstacle?.Invoke(body.GlobalPosition);
 		}
 	}
 }

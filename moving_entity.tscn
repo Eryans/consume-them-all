@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://btebxwdonw7tr"]
+[gd_scene load_steps=11 format=3 uid="uid://btebxwdonw7tr"]
 
 [ext_resource type="Script" uid="uid://cnvnv0jmxrofx" path="res://MovingEntity.cs" id="1_o33c0"]
 [ext_resource type="Script" uid="uid://qhuvmo1xlwo1" path="res://Consumable.cs" id="2_v7cii"]
@@ -9,6 +9,37 @@
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o33c0"]
 albedo_color = Color(1, 0.369473, 0.225814, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_o33c0"]
+
+[sub_resource type="Animation" id="Animation_sxl1b"]
+resource_name = "Idle"
+loop_mode = 1
+step = 0.0333333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance3D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(1, 1, 1), Vector3(1, 1.2, 1), Vector3(1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_o33c0"]
 resource_name = "MovementAnim"
@@ -54,35 +85,6 @@ tracks/1/keys = {
 "values": [Vector3(1, 1.2, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_sxl1b"]
-resource_name = "Idle"
-loop_mode = 1
-step = 0.0333333
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("MeshInstance3D:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("MeshInstance3D:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(1, 1, 1), Vector3(1, 1.2, 1), Vector3(1, 1, 1)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mak6n"]
 _data = {
 &"Idle": SubResource("Animation_sxl1b"),
@@ -90,8 +92,9 @@ _data = {
 &"RESET": SubResource("Animation_v7cii")
 }
 
-[node name="MovingEntity" type="Area3D"]
+[node name="MovingEntity" type="Area3D" groups=["Consumable"]]
 script = ExtResource("1_o33c0")
+maxDistanceToPlayer = 150.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_sxl1b")
@@ -101,6 +104,11 @@ transform = Transform3D(1, 0, 0, 0, 1.2, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("CapsuleMesh_mak6n")
 surface_material_override/0 = SubResource("StandardMaterial3D_o33c0")
 
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="MeshInstance3D"]
+transform = Transform3D(0.6, 0, 0, 0, 0.3, 0, 0, 0, 1, 0, 0.3, 0.2)
+mesh = SubResource("BoxMesh_o33c0")
+skeleton = NodePath("../../root/@EditorNode@21394/@Panel@14/@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@26/DockVSplitCenter/@VSplitContainer@54/@VBoxContainer@55/@EditorMainScreen@102/MainScreen/@CanvasItemEditor@11634/@VSplitContainer@11286/@HSplitContainer@11288/@HSplitContainer@11290/@Control@11291/@SubViewportContainer@11292/@SubViewport@11293/Node3D")
+
 [node name="Consumable" type="Node" parent="."]
 script = ExtResource("2_v7cii")
 metadata/_custom_type_script = "uid://qhuvmo1xlwo1"
@@ -109,3 +117,8 @@ metadata/_custom_type_script = "uid://qhuvmo1xlwo1"
 libraries = {
 &"": SubResource("AnimationLibrary_mak6n")
 }
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+target_position = Vector3(0, 0, 4)
+collision_mask = 2
+debug_shape_custom_color = Color(1, 0, 0, 1)
