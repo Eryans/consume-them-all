@@ -111,6 +111,7 @@ skeleton = NodePath("../../root/@EditorNode@21394/@Panel@14/@VBoxContainer@15/Do
 
 [node name="Consumable" type="Node" parent="."]
 script = ExtResource("2_v7cii")
+BonusTime = 3
 metadata/_custom_type_script = "uid://qhuvmo1xlwo1"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

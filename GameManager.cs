@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using Godot;
 
 public partial class GameManager : Node
@@ -8,17 +6,27 @@ public partial class GameManager : Node
 	private int maxConsumables;
 	public static GameManager Instance { get; private set; }
 	private Player player;
+	public event EventHandler<GameDataEventArgs> OnUpdateGameData;
+	public class GameDataEventArgs : EventArgs
+	{
+		public int consumablesLeft;
+		public int maxConsumables;
+	}
 	public override void _Ready()
 	{
 		if (Instance != null && Instance != this)
 		{
 			GD.Print("WARNING : GameManager Instance alreadyExist ! overwriting current instance");
-			Instance = this;
 		}
+		Instance = this;
 		player = (Player)GetTree().GetFirstNodeInGroup("Player");
 		maxConsumables = GetTree().GetNodeCountInGroup("Consumable");
 		player.OnAteRewardableEntity += OnPlayerAteRewardableEntity;
 		player.OnPlayerDeath += OnPlayerDeath;
+		Callable.From(() =>
+		{
+			OnUpdateGameData?.Invoke(this, new GameDataEventArgs { maxConsumables = maxConsumables, consumablesLeft = maxConsumables });
+		}).CallDeferred();
 	}
 
 	private void OnPlayerDeath()
@@ -29,8 +37,9 @@ public partial class GameManager : Node
 
 	private void OnPlayerAteRewardableEntity()
 	{
-		GD.Print("Nom nom +1 Score !");
-		if (GetTree().GetNodeCountInGroup("Consumable") <= 0)
+		int consumablesLeft = GetTree().GetNodeCountInGroup("Consumable");
+		OnUpdateGameData?.Invoke(this, new GameDataEventArgs { maxConsumables = maxConsumables, consumablesLeft = consumablesLeft });
+		if (consumablesLeft <= 0)
 		{
 			// Win Condition
 			GD.Print("You win !");

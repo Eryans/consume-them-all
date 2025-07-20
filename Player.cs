@@ -43,14 +43,18 @@ public partial class Player : CharacterBody3D
 	private void OnStayAliveTimerTimeout()
 	{
 		currentState = State.Dead;
+		stayAliveTimer.Stop();
 		OnPlayerDeath?.Invoke();
 	}
 
-	private void OnConsumeEntity(Node3D entity)
+	private void OnConsumeEntity(Node3D entity, int bonusTime)
 	{
 		if (entity.IsInGroup("Consumable"))
 		{
 			OnAteRewardableEntity?.Invoke();
+			float newTime = (float)Mathf.Clamp(stayAliveTimer.TimeLeft + bonusTime, 0, maxAliveTime);
+			stayAliveTimer.Stop();
+			stayAliveTimer.Start(newTime);
 		}
 	}
 
