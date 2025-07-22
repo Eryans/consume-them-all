@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://bxtuiif4llbb8"]
+
+[ext_resource type="Script" uid="uid://b8ru47kk2co1j" path="res://Gps.cs" id="1_rajp7"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rjufp"]
+emission_enabled = true
+emission = Color(1, 0.802791, 0.275656, 1)
+emission_energy_multiplier = 2.0
+
+[sub_resource type="PrismMesh" id="PrismMesh_w4vn2"]
+
+[node name="GPS" type="Node3D"]
+script = ExtResource("1_rajp7")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.7, 1.68289e-07, 0, 2.67496e-15, 8.41444e-08, 0.3, 6.11959e-08, 1.925, -1.31134e-08, 1.74846e-07, 8.74228e-08, 2)
+material_override = SubResource("StandardMaterial3D_rjufp")
+mesh = SubResource("PrismMesh_w4vn2")

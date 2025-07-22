@@ -1,6 +1,8 @@
 using Godot;
 using Godot.Collections;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 public partial class Player : CharacterBody3D
 {
@@ -27,9 +29,13 @@ public partial class Player : CharacterBody3D
 	private Tween rtw;
 	public event Action AteRewardableEntityEvent;
 	public event Action PlayerDeathEvent;
+	private AnimationPlayer animationPlayer;
+	private Gps gps;
 	public override void _Ready()
 	{
+		animationPlayer = GetNode<AnimationPlayer>("%AnimationPlayer");
 		visual = GetNode<Node3D>("%Visual");
+		gps = GetNode<Gps>("GPS");
 		EntityDetector entityDetector = GetNode<EntityDetector>("EntityDetector");
 		entityDetector.HitObstacleEvent += OnHitObstacle;
 		entityDetector.ConsumeEntityEvent += OnConsumeEntity;
@@ -38,6 +44,7 @@ public partial class Player : CharacterBody3D
 		StayAliveTimer.Start(MaxAliveTime);
 		stunedTimer.Timeout += OnStunedTimerTimeout;
 		StayAliveTimer.Timeout += OnStayAliveTimerTimeout;
+		SetNewGPSNearestTarget();
 	}
 
 	private void OnStayAliveTimerTimeout()
@@ -49,15 +56,31 @@ public partial class Player : CharacterBody3D
 
 	private void OnConsumeEntity(Node3D entity, int bonusTime)
 	{
+		animationPlayer.Play("Eat");
 		if (entity.IsInGroup("Consumable"))
 		{
+			entity.RemoveFromGroup("Consumable");
 			AteRewardableEntityEvent?.Invoke();
 			float newTime = (float)Mathf.Clamp(StayAliveTimer.TimeLeft + bonusTime, 0, MaxAliveTime);
 			StayAliveTimer.Stop();
 			StayAliveTimer.Start(newTime);
 		}
+		SetNewGPSNearestTarget();
 	}
-
+	private void SetNewGPSNearestTarget()
+	{
+		List<Node3D> consumables = [.. GetTree().GetNodesInGroup("Consumable").Cast<Node3D>()];
+		Node3D nearest = null;
+		foreach (Node3D consumable in consumables)
+		{
+			nearest ??= consumable;
+			if (GlobalPosition.DistanceSquaredTo(consumable.GlobalPosition) < GlobalPosition.DistanceSquaredTo(nearest.GlobalPosition))
+			{
+				nearest = consumable;
+			}
+		}
+		gps.SetTarget(nearest);
+	}
 	private void OnStunedTimerTimeout()
 	{
 		currentState = State.Normal;
@@ -77,9 +100,11 @@ public partial class Player : CharacterBody3D
 		Vector3 originalScale = visual.Scale;
 		float originalRotation = visual.Rotation.Y;
 		int rotationLoop = 3;
-		rtw.TweenProperty(visual, "rotation:y", originalRotation + Mathf.DegToRad(360) * rotationLoop, 1).SetTrans(Tween.TransitionType.Sine);
+		tw.SetEase(Tween.EaseType.Out);
+		rtw.SetEase(Tween.EaseType.Out);
+		rtw.TweenProperty(visual, "rotation:y", originalRotation + Mathf.DegToRad(360) * rotationLoop, 1).SetTrans(Tween.TransitionType.Back);
 		tw.TweenProperty(visual, "scale", visual.Scale * 1.25f, .1f);
-		tw.TweenProperty(visual, "scale", originalScale, .5f).SetTrans(Tween.TransitionType.Bounce);
+		tw.TweenProperty(visual, "scale", originalScale, .75f).SetTrans(Tween.TransitionType.Back);
 	}
 
 	public override void _PhysicsProcess(double delta)

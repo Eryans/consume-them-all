@@ -15,6 +15,7 @@ albedo_color = Color(0.603922, 0.721569, 0, 1)
 script = ExtResource("1_7mycd")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
 material_override = SubResource("StandardMaterial3D_h2yge")
 use_collision = true
 collision_layer = 129
@@ -22,41 +23,243 @@ collision_mask = 129
 size = Vector3(500, 1, 500)
 
 [node name="SpringArm3D" parent="." node_paths=PackedStringArray("target") instance=ExtResource("1_0xm2m")]
+transform = Transform3D(1, 0, 0, 0, 0.766044, 0.642787, 0, -0.642787, 0.766044, 0, 0, 0)
 target = NodePath("../Player")
 speed = 10.0
 
 [node name="Player" parent="." instance=ExtResource("2_h2yge")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.51987, 0)
+Speed = 30.0
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.258819, 0.965926, 0, -0.965926, 0.258819, 0, 14, 0)
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="." groups=["Obstacle"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.5, 3.5, -7.5)
-layers = 3
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(4, 6, 16)
-
-[node name="CSGBox3D3" type="CSGBox3D" parent="." groups=["Obstacle"]]
-transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 11.5, 3.5, 18.3911)
-layers = 3
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(4, 6, 16)
-
 [node name="Control" parent="." instance=ExtResource("7_272bh")]
 
 [node name="MovingEntity" parent="." instance=ExtResource("5_lquwl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 2, 16)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 43)
 
 [node name="MovingEntity2" parent="." instance=ExtResource("5_lquwl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 2, 12)
 
 [node name="MovingEntity3" parent="." instance=ExtResource("5_lquwl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 2, 7)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 2, 18)
 
-[node name="MovingEntity4" parent="." instance=ExtResource("5_lquwl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 2, 2)
+[node name="Obstacles" type="Node3D" parent="."]
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Obstacles" groups=["Obstacle"]]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -9, 3.5, -93.5)
+layers = 3
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(4, 6, 393)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Obstacles" groups=["Obstacle"]]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -9, 3.5, 114.5)
+layers = 3
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(4, 6, 393)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Obstacles" groups=["Obstacle"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 188, 3.5, 13)
+layers = 3
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(4, 6, 214)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="Obstacles" groups=["Obstacle"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -204, 3.5, 13)
+layers = 3
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(4, 6, 214)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Obstacles" groups=["Obstacle"]]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 73.5707, 5, 23.3413)
+layers = 3
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(11, 10, 13)
+
+[node name="CSGBox3D13" type="CSGBox3D" parent="Obstacles" groups=["Obstacle"]]
+transform = Transform3D(0.5, 0, -0.866026, 0, 1, 0, 0.866026, 0, 0.5, -20.4293, 5, 59.3413)
+layers = 3
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(11, 10, 13)
+
+[node name="CSGBox3D20" type="CSGBox3D" parent="Obstacles" groups=["Obstacle"]]
+transform = Transform3D(0.5, 0, -0.866026, 0, 1, 0, 0.866026, 0, 0.5, -182.901, 5, 33.8536)
+layers = 3
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(32, 10, 20)
+
+[node name="CSGBox3D21" type="CSGBox3D" parent="Obstacles" groups=["Obstacle"]]
+transform = Transform3D(0.5, 0, -0.866026, 0, 1, 0, 0.866026, 0, 0.5, -181.535, 8.5, 34.2196)
+layers = 3
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(18, 17, 12)
+
+[node name="CSGBox3D14" type="CSGBox3D" parent="Obstacles" groups=["Obstacle"]]
+transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, 76.5707, 5, -32.6587)
+layers = 3
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(11, 10, 13)
+
+[node name="CSGBox3D15" type="CSGBox3D" parent="Obstacles" groups=["Obstacle"]]
+transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, -144.429, 5, -54.6587)
+layers = 3
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(11, 10, 13)
+
+[node name="CSGBox3D16" type="CSGBox3D" parent="Obstacles" groups=["Obstacle"]]
+transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, -79.4293, 5, -11.6587)
+layers = 3
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(11, 10, 13)
+
+[node name="CSGBox3D17" type="CSGBox3D" parent="Obstacles" groups=["Obstacle"]]
+transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, -124.429, 5, 78.3413)
+layers = 3
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(11, 10, 13)
+
+[node name="CSGBox3D18" type="CSGBox3D" parent="Obstacles" groups=["Obstacle"]]
+transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, 142.571, 5, 83.3413)
+layers = 3
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(11, 10, 13)
+
+[node name="CSGBox3D19" type="CSGBox3D" parent="Obstacles" groups=["Obstacle"]]
+transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, 153.571, 5, -45.6587)
+layers = 3
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(11, 10, 13)
+
+[node name="Node3D" type="Node3D" parent="Obstacles"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 52, 0, 68)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="Obstacles/Node3D" groups=["Obstacle"]]
+transform = Transform3D(-0.258819, 0, -0.965926, 0, 1, 0, 0.965926, 0, -0.258819, -5.49, 5, 24.402)
+layers = 3
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(21, 16, 16)
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="Obstacles/Node3D" groups=["Obstacle"]]
+transform = Transform3D(-0.482963, -0.258819, -0.836517, -0.12941, 0.965926, -0.224144, 0.866026, 0, -0.5, 6.82218, 5, 21.469)
+layers = 3
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(16, 10, 14)
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="Obstacles/Node3D" groups=["Obstacle"]]
+transform = Transform3D(-0.5, 0, -0.866026, 0, 1, 0, 0.866026, 0, -0.5, 0.822182, 1, 25.469)
+layers = 3
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(16, 10, 14)
+
+[node name="Node3D3" type="Node3D" parent="Obstacles"]
+transform = Transform3D(-0.638405, 0, 0.7697, 0, 1, 0, -0.7697, 0, -0.638405, 105, 0, -46.4983)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="Obstacles/Node3D3" groups=["Obstacle"]]
+transform = Transform3D(-0.258819, 0, -0.965926, 0, 1, 0, 0.965926, 0, -0.258819, -5.49, 5, 24.402)
+layers = 3
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(21, 16, 16)
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="Obstacles/Node3D3" groups=["Obstacle"]]
+transform = Transform3D(-0.482963, -0.258819, -0.836517, -0.12941, 0.965926, -0.224144, 0.866026, 0, -0.5, 6.82218, 5, 21.469)
+layers = 3
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(16, 10, 14)
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="Obstacles/Node3D3" groups=["Obstacle"]]
+transform = Transform3D(-0.5, 0, -0.866026, 0, 1, 0, 0.866026, 0, -0.5, 0.822182, 1, 25.469)
+layers = 3
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(16, 10, 14)
+
+[node name="Node3D2" type="Node3D" parent="Obstacles"]
+transform = Transform3D(0.683013, -0.258819, 0.683013, 0.183013, 0.965926, 0.183013, -0.707107, 0, 0.707107, -123, -8, 11)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="Obstacles/Node3D2" groups=["Obstacle"]]
+transform = Transform3D(-0.258819, 0, -0.965926, 0, 1, 0, 0.965926, 0, -0.258819, -5.49, 5, 24.402)
+layers = 3
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(21, 16, 16)
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="Obstacles/Node3D2" groups=["Obstacle"]]
+transform = Transform3D(-0.482963, -0.258819, -0.836517, -0.12941, 0.965926, -0.224144, 0.866026, 0, -0.5, 6.82218, 5, 21.469)
+layers = 3
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(16, 10, 14)
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="Obstacles/Node3D2" groups=["Obstacle"]]
+transform = Transform3D(-0.5, 0, -0.866026, 0, 1, 0, 0.866026, 0, -0.5, 0.822182, 1, 25.469)
+layers = 3
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(16, 10, 14)
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="Obstacles" groups=["Obstacle"]]
+transform = Transform3D(0.298809, -0.851271, -0.431336, -0.677077, 0.129409, -0.724445, 0.672518, 0.508519, -0.537707, -50.0123, -2.29679, -34.7543)
+layers = 3
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(21, 16, 16)
+
+[node name="CSGBox3D11" type="CSGBox3D" parent="Obstacles" groups=["Obstacle"]]
+transform = Transform3D(0.686832, -0.242362, -0.685217, -0.677077, 0.129409, -0.724445, 0.264252, 0.961516, -0.0752156, -49.2792, 10.2533, -36.2208)
+layers = 3
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(16, 10, 14)
+
+[node name="CSGBox3D12" type="CSGBox3D" parent="Obstacles" groups=["Obstacle"]]
+transform = Transform3D(0.899519, -0.433013, 0.0580127, -0.0580127, -0.25, -0.966506, 0.433013, 0.866025, -0.25, -40.5542, -0.956488, -37.6849)
+layers = 3
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(16, 10, 14)

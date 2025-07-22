@@ -39,20 +39,15 @@ public partial class GameManager : Node
 
 	private void OnPlayerAteRewardableEntity()
 	{
-		Callable.From(() =>
+		int consumablesLeft = GetTree().GetNodeCountInGroup("Consumable");
+		UpdateGameDataEvent?.Invoke(this, new GameDataEventArgs { maxConsumables = maxConsumables, consumablesLeft = consumablesLeft });
+		if (consumablesLeft <= 0)
 		{
-			int consumablesLeft = GetTree().GetNodeCountInGroup("Consumable");
-			// I don't know why, but there is always one more entity in the group array
-			// Maybe a race condition ? 
-			UpdateGameDataEvent?.Invoke(this, new GameDataEventArgs { maxConsumables = maxConsumables, consumablesLeft = consumablesLeft - 1 });
-			if (consumablesLeft - 1 <= 0)
-			{
-				// Win Condition
-				GD.Print("You win !");
-				WinOrGameOverEvent?.Invoke(true);
-				player.StayAliveTimer.Stop();
-			}
-		}).CallDeferred();
+			// Win Condition
+			GD.Print("You win !");
+			WinOrGameOverEvent?.Invoke(true);
+			Callable.From(player.StayAliveTimer.Stop).CallDeferred();
+		}
 	}
 
 	public override void _Process(double delta)
