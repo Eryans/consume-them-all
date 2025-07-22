@@ -37,13 +37,37 @@ transform = Transform3D(1, 0, 0, 0, 0.258819, 0.965926, 0, -0.965926, 0.258819, 
 [node name="Control" parent="." instance=ExtResource("7_272bh")]
 
 [node name="MovingEntity" parent="." instance=ExtResource("5_lquwl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 43)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 24)
 
 [node name="MovingEntity2" parent="." instance=ExtResource("5_lquwl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 2, 12)
 
 [node name="MovingEntity3" parent="." instance=ExtResource("5_lquwl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 2, 18)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 2, 18)
+
+[node name="MovingEntity4" parent="." instance=ExtResource("5_lquwl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.4623, 2, -3.69649)
+
+[node name="MovingEntity5" parent="." instance=ExtResource("5_lquwl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.4623, 2, -15.6965)
+
+[node name="MovingEntity6" parent="." instance=ExtResource("5_lquwl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.4623, 2, -9.69649)
+
+[node name="MovingEntity7" parent="." instance=ExtResource("5_lquwl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.6008, 2, -3.69649)
+maxDistanceToPlayer = 300.0
+speed = 15.0
+
+[node name="MovingEntity8" parent="." instance=ExtResource("5_lquwl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.6008, 2, -15.6965)
+maxDistanceToPlayer = 300.0
+speed = 15.0
+
+[node name="MovingEntity9" parent="." instance=ExtResource("5_lquwl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.6008, 2, -9.69649)
+maxDistanceToPlayer = 300.0
+speed = 15.0
 
 [node name="Obstacles" type="Node3D" parent="."]
 

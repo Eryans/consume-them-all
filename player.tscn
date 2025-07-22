@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://cf716bjk3sjh6"]
+[gd_scene load_steps=28 format=4 uid="uid://cf716bjk3sjh6"]
 
 [ext_resource type="Script" uid="uid://ba8swiagxv6v4" path="res://Player.cs" id="1_4flbx"]
 [ext_resource type="Texture2D" uid="uid://b1v8tu3hp4v" path="res://Monster_Untitled.png" id="2_i3pqv"]
@@ -52,6 +52,12 @@ bind/3/pose = Transform3D(-1, -1.49705e-07, 1.96981e-08, -4.44088e-14, 0.130455,
 bind/4/name = &"Bone.004"
 bind/4/bone = -1
 bind/4/pose = Transform3D(-1, -3.80029e-07, -8.49755e-08, -2.77111e-13, -0.218212, 0.975901, -3.89414e-07, 0.975899, 0.218214, 1.33664e-07, -1.04956, -0.343244)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sweqy"]
+diffuse_mode = 3
+specular_mode = 2
+albedo_texture = ExtResource("2_i3pqv")
+roughness = 0.0
 
 [sub_resource type="Animation" id="Animation_bqvk5"]
 resource_name = "Eat"
@@ -156,6 +162,75 @@ _data = {
 [sub_resource type="SphereShape3D" id="SphereShape3D_i3pqv"]
 radius = 3.0
 
+[sub_resource type="Curve" id="Curve_hqtel"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.314607), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_sweqy"]
+curve = SubResource("Curve_hqtel")
+
+[sub_resource type="Curve" id="Curve_sweqy"]
+_limits = [0.0, 3.0, 0.0, 1.0]
+_data = [Vector2(0, 1.44944), 0.0, 0.0, 0, 0, Vector2(1, 0.842697), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_2hs0m"]
+curve = SubResource("Curve_sweqy")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2hs0m"]
+particle_flag_align_y = true
+emission_shape = 3
+emission_box_extents = Vector3(0.5, 1, 1)
+direction = Vector3(0, 0.5, -1)
+spread = 15.0
+initial_velocity_max = 30.0
+gravity = Vector3(0, -5, 0)
+attractor_interaction_enabled = false
+scale_curve = SubResource("CurveTexture_sweqy")
+scale_over_velocity_curve = SubResource("CurveTexture_2hs0m")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hqtel"]
+shading_mode = 0
+albedo_color = Color(0.481746, 0.335879, 0.190592, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_1jxqw"]
+material = SubResource("StandardMaterial3D_hqtel")
+
+[sub_resource type="Curve" id="Curve_2hs0m"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.314607), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_1jxqw"]
+curve = SubResource("Curve_2hs0m")
+
+[sub_resource type="Curve" id="Curve_dw050"]
+_limits = [0.0, 3.0, 0.0, 1.0]
+_data = [Vector2(0, 1.44944), 0.0, 0.0, 0, 0, Vector2(1, 0.842697), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_b26j0"]
+curve = SubResource("Curve_dw050")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_n7ghd"]
+particle_flag_align_y = true
+particle_flag_rotate_y = true
+emission_shape_scale = Vector3(1, 0, 1)
+emission_shape = 3
+emission_box_extents = Vector3(2, 1, 1)
+direction = Vector3(0, 0, -5)
+spread = 2.0
+initial_velocity_max = 30.0
+gravity = Vector3(0, 0, 0)
+attractor_interaction_enabled = false
+scale_curve = SubResource("CurveTexture_1jxqw")
+scale_over_velocity_curve = SubResource("CurveTexture_b26j0")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nvl01"]
+albedo_color = Color(0.350727, 0.158294, 0.0123611, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ivps1"]
+material = SubResource("StandardMaterial3D_nvl01")
+
 [node name="Player" type="CharacterBody3D" groups=["Player"]]
 script = ExtResource("1_4flbx")
 Speed = 15.0
@@ -167,7 +242,7 @@ shape = SubResource("CapsuleShape3D_h2yge")
 
 [node name="Visual" type="Node3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0.6, -0.3)
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, -0.5, -0.3)
 
 [node name="Monster" type="Node3D" parent="Visual"]
 
@@ -214,6 +289,7 @@ bones/4/scale = Vector3(1, 1, 1)
 [node name="Cube" type="MeshInstance3D" parent="Visual/Monster/Armature/Skeleton3D"]
 mesh = SubResource("ArrayMesh_yfcd1")
 skin = SubResource("Skin_3wij4")
+surface_material_override/0 = SubResource("StandardMaterial3D_sweqy")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Visual/Monster"]
 unique_name_in_owner = true
@@ -229,3 +305,22 @@ script = ExtResource("2_onrkg")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="EntityDetector"]
 shape = SubResource("SphereShape3D_i3pqv")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 0, -1.6, 0)
+amount = 32
+process_material = SubResource("ParticleProcessMaterial_2hs0m")
+draw_pass_1 = SubResource("BoxMesh_1jxqw")
+
+[node name="GPUParticles3D3" type="GPUParticles3D" parent="."]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 0, -1.6, 0)
+amount = 32
+process_material = SubResource("ParticleProcessMaterial_2hs0m")
+draw_pass_1 = SubResource("BoxMesh_1jxqw")
+
+[node name="GPUParticles3D2" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8, 0)
+visible = false
+amount = 32
+process_material = SubResource("ParticleProcessMaterial_n7ghd")
+draw_pass_1 = SubResource("PlaneMesh_ivps1")

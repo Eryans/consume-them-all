@@ -10,7 +10,7 @@ public partial class Player : CharacterBody3D
 	{
 		Normal,
 		Stuned,
-		Dead
+		Inactive
 	}
 	[Export]
 	private float RayLength = 1000f;
@@ -44,12 +44,21 @@ public partial class Player : CharacterBody3D
 		StayAliveTimer.Start(MaxAliveTime);
 		stunedTimer.Timeout += OnStunedTimerTimeout;
 		StayAliveTimer.Timeout += OnStayAliveTimerTimeout;
+		GameManager.Instance.WinOrGameOverEvent += OnWinOrGameOver;
 		SetNewGPSNearestTarget();
 	}
 
+	private void OnWinOrGameOver(bool obj)
+	{
+		currentState = State.Inactive;
+	}
+	public override void _ExitTree()
+	{
+		GameManager.Instance.WinOrGameOverEvent -= OnWinOrGameOver;
+	}
 	private void OnStayAliveTimerTimeout()
 	{
-		currentState = State.Dead;
+		currentState = State.Inactive;
 		StayAliveTimer.Stop();
 		PlayerDeathEvent?.Invoke();
 	}
@@ -102,7 +111,7 @@ public partial class Player : CharacterBody3D
 		int rotationLoop = 3;
 		tw.SetEase(Tween.EaseType.Out);
 		rtw.SetEase(Tween.EaseType.Out);
-		rtw.TweenProperty(visual, "rotation:y", originalRotation + Mathf.DegToRad(360) * rotationLoop, 1).SetTrans(Tween.TransitionType.Back);
+		rtw.TweenProperty(visual, "rotation:y", originalRotation + Mathf.Tau * rotationLoop, 1).SetTrans(Tween.TransitionType.Back);
 		tw.TweenProperty(visual, "scale", visual.Scale * 1.25f, .1f);
 		tw.TweenProperty(visual, "scale", originalScale, .75f).SetTrans(Tween.TransitionType.Back);
 	}
@@ -134,7 +143,7 @@ public partial class Player : CharacterBody3D
 				Velocity = stunedDirection * Speed;
 				// visual.RotateY((float)delta * stunnedRotationForce);
 				break;
-			case State.Dead:
+			case State.Inactive:
 				Velocity = Vector3.Zero;
 				break;
 		}
