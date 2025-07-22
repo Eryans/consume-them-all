@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://br3qnla0f77d7"]
+
+[ext_resource type="Script" uid="uid://b5w5rtm525ryf" path="res://BloodExplosion.cs" id="1_c24p1"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_86mno"]
+particle_flag_align_y = true
+emission_shape = 1
+emission_sphere_radius = 0.5
+direction = Vector3(0, 2, 0)
+initial_velocity_max = 15.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c24p1"]
+albedo_color = Color(0.741176, 0, 0, 1)
+roughness = 0.16
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_qfb3w"]
+material = SubResource("StandardMaterial3D_c24p1")
+radius = 0.125
+height = 0.5
+
+[node name="BloodExplosion" type="GPUParticles3D"]
+emitting = false
+amount = 100
+lifetime = 2.0
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_86mno")
+draw_pass_1 = SubResource("CapsuleMesh_qfb3w")
+script = ExtResource("1_c24p1")

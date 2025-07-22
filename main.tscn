@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bs7fac4gqq38d"]
+[gd_scene load_steps=12 format=4 uid="uid://bs7fac4gqq38d"]
 
 [ext_resource type="PackedScene" uid="uid://bx4os13hcq6ew" path="res://FollowCamera.tscn" id="1_0xm2m"]
 [ext_resource type="Script" uid="uid://cimcohihg0ya2" path="res://GameManager.cs" id="1_7mycd"]
@@ -6,10 +6,48 @@
 [ext_resource type="PackedScene" uid="uid://btebxwdonw7tr" path="res://moving_entity.tscn" id="5_lquwl"]
 [ext_resource type="PackedScene" uid="uid://cw1l3g7lrqlhq" path="res://control.tscn" id="7_272bh"]
 
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_lquwl"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_7mycd"]
+sky_material = SubResource("ProceduralSkyMaterial_lquwl")
+
+[sub_resource type="Environment" id="Environment_272bh"]
+background_mode = 1
+background_color = Color(0.44407, 0.496852, 0.58599, 1)
+sky = SubResource("Sky_7mycd")
+ambient_light_source = 2
+ambient_light_color = Color(0.240605, 0.415114, 0.499959, 1)
+tonemap_mode = 2
+ssao_enabled = true
+ssao_intensity = 5.44
+ssao_power = 1.72305
+ssao_horizon = 1.0
+ssao_sharpness = 0.65
+glow_enabled = true
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h2yge"]
 albedo_color = Color(0.603922, 0.721569, 0, 1)
 
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_lquwl"]
+data = PackedVector3Array(-23.3085, 0, 67.3544, -26.4705, 0, 59.6965, -28.3594, 0, 58.606, -26.4705, 0, 59.6965, -23.3085, 0, 67.3544, -18.2575, 0, 64.4383, -28.3594, 0, 58.606, -23.3085, 8.74848, 67.3544, -23.3085, 0, 67.3544, -23.3085, 8.74848, 67.3544, -21.3392, 5.33769, 66.2175, -23.3085, 0, 67.3544, -19.2822, 0, 52.3282, -19.2822, 1.55436, 52.3282, -21.9744, 0, 53.8825, -21.9744, 0, 53.8825, -19.4879, 0, 55.3181, -19.2822, 0, 52.3282, -19.2822, 1.55436, 52.3282, -19.2822, 0, 52.3282, -17.6128, 0.590522, 55.2197, -16.59, 0, 56.9912, -19.2822, 0, 52.3282, -19.4879, 0, 55.3181, -16.59, 0, 56.9912, -17.6128, 0.590522, 55.2197, -19.2822, 0, 52.3282, -18.2575, 0, 64.4383, -23.3085, 0, 67.3544, -21.3392, 5.33769, 66.2175, -21.3392, 5.33769, 66.2175, -28.3594, 0, 58.606, -26.4705, 0, 59.6965, -28.3594, 0, 58.606, -21.3392, 5.33769, 66.2175, -23.3085, 8.74848, 67.3544, -19.2822, 1.55436, 52.3282, -19.4879, 0, 55.3181, -21.9744, 0, 53.8825, -19.4879, 0, 55.3181, -19.2822, 1.55436, 52.3282, -17.6128, 0.590522, 55.2197, -17.6128, 0.590522, 55.2197, -16.59, 0, 56.9912, -19.4879, 0, 55.3181, -26.4705, 0, 59.6965, -18.2575, 0, 64.4383, -21.3392, 5.33769, 66.2175)
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_7mycd"]
+_surfaces = [{
+"aabb": AABB(-28.3594, 0, 52.3282, 11.7694, 8.74848, 15.0263),
+"attribute_data": PackedByteArray("AAAAAAAAgD+wCss9PbmBPgAAAABAN6c9sArLPT25gT4AAAAAAACAP+G7Bz8AAIA/GBlrPwAAgD8AAAAA0ycAPgAAAAAAAIA/0ycAPgAAAADbte4+/6xTPgAAgD8AAAAAAACAPwAAAABYNVg/AAAAAAAAgD9hspA+0KY3PwAAAACyD1k/FnhnPgAAgD8AAAAAAACAP6AqHz4AAIA/AAAAANxLMj/A4HE9AACAPz6f+j4AAIA/AAAAALIPWT8WeGc+YbACPwAAAADcSzI/wOBxPQAAgD8AAAAAAACAP+G7Bz8AAIA/AAAAANu17j7/rFM+fT3GPn09xj49p2E/LLxFPyy8RT8svEU/PadhPyy8RT99PcY+fT3GPnpY4z59axA+gLMgP+iUtT6XStc+l0rXPpVK1z5Ayo0+l0rXPpdK1z6AsyA/6JS1Pria/z64mv8+uJr/Pria/z6ZStc+bXoWP5dK1z6XStc+LLxFPyy8RT8ksZg+KrxFP309xj59PcY+"),
+"format": 34359738391,
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 48,
+"vertex_data": PackedByteArray("v3e6wQAAAAB6tYZCmMPTwQAAAAA9yW5CD+DiwQAAAACCbGpCmMPTwQAAAAA9yW5Cv3e6wQAAAAB6tYZCbQ+SwQAAAABn4IBCD+DiwQAAAACCbGpCv3e6wcf5C0F6tYZCv3e6wQAAAAB6tYZCv3e6wcf5C0F6tYZCx7aqwVfOqkBeb4RCv3e6wQAAAAB6tYZC6UGawQAAAAAJUFFC6UGawUj1xj8JUFFCmsuvwQAAAACzh1dCmsuvwQAAAACzh1dCR+ebwQAAAAC6RV1C6UGawQAAAAAJUFFC6UGawUj1xj8JUFFC6UGawQAAAAAJUFFC8+aMwXgsFz/y4FxCOriEwQAAAAAH92NC6UGawQAAAAAJUFFCR+ebwQAAAAC6RV1COriEwQAAAAAH92NC8+aMwXgsFz/y4FxC6UGawQAAAAAJUFFCbQ+SwQAAAABn4IBCv3e6wQAAAAB6tYZCx7aqwVfOqkBeb4RCx7aqwVfOqkBeb4RCD+DiwQAAAACCbGpCmMPTwQAAAAA9yW5CD+DiwQAAAACCbGpCx7aqwVfOqkBeb4RCv3e6wcf5C0F6tYZC6UGawUj1xj8JUFFCR+ebwQAAAAC6RV1CmsuvwQAAAACzh1dCR+ebwQAAAAC6RV1C6UGawUj1xj8JUFFC8+aMwXgsFz/y4FxC8+aMwXgsFz/y4FxCOriEwQAAAAAH92NCR+ebwQAAAAC6RV1CmMPTwQAAAAA9yW5CbQ+SwQAAAABn4IBCx7aqwVfOqkBeb4RC/38AAP//kij/fwAA//+SKP9/AAD//5Io/38AAP//kij/fwAA//+SKP9/AAD//5Io2S7/fwAAbBfZLv9/AABsF9ku/38AAGwX2a7/f/9//n/Zrv9//3/+f9mu/3//f/5/AAAl0f9//n8AACXR/3/+fwAAJdH/f/5//38AAP//kij/fwAA//+SKP9/AAD//5Io///ZrgAAbBf//9muAABsF///2a4AAGwX/38AAP//kij/fwAA//+SKP9/AAD//5Io/v/ZrgAAkmj+/9muAACSaP7/2a4AAJJo2a7/f/9//n/Zrv9//3/+f9mu/3//f/5/+NkQ3wAAkqj42RDfAACSqPjZEN8AAJKo+NkQ3wAAbNf42RDfAABs1/jZEN8AAGzXV2uOx/jZh+9Xa47H+NmH71drjsf42YfvV2uOx/jZh+9Xa47H+NmH71drjsf42YfvV2uOx/jZh+9Xa47H+NmH71drjsf42Yfv+NkQ3wAAbNf42RDfAABs1/jZEN8AAGzX")
+}]
+
 [node name="Node3D" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_272bh")
 
 [node name="GameManager" type="Node" parent="."]
 script = ExtResource("1_7mycd")
@@ -33,6 +71,12 @@ Speed = 30.0
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.258819, 0.965926, 0, -0.965926, 0.258819, 0, 14, 0)
+light_color = Color(0.988284, 0.890326, 0.590457, 1)
+shadow_enabled = true
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.700611, -0.192894, -0.686977, 0.711516, -0.116331, -0.692973, 0.0537534, -0.974299, 0.21875, 0, 14, 18)
+light_color = Color(0.593285, 0.757485, 0.840068, 1)
 
 [node name="Control" parent="." instance=ExtResource("7_272bh")]
 
@@ -111,14 +155,6 @@ collision_layer = 3
 collision_mask = 3
 size = Vector3(11, 10, 13)
 
-[node name="CSGBox3D13" type="CSGBox3D" parent="Obstacles" groups=["Obstacle"]]
-transform = Transform3D(0.5, 0, -0.866026, 0, 1, 0, 0.866026, 0, 0.5, -20.4293, 5, 59.3413)
-layers = 3
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(11, 10, 13)
-
 [node name="CSGBox3D20" type="CSGBox3D" parent="Obstacles" groups=["Obstacle"]]
 transform = Transform3D(0.5, 0, -0.866026, 0, 1, 0, 0.866026, 0, 0.5, -182.901, 5, 33.8536)
 layers = 3
@@ -126,6 +162,15 @@ use_collision = true
 collision_layer = 3
 collision_mask = 3
 size = Vector3(32, 10, 20)
+
+[node name="Node3D4" type="StaticBody3D" parent="Obstacles"]
+
+[node name="CSGBakedCollisionShape3D" type="CollisionShape3D" parent="Obstacles/Node3D4"]
+shape = SubResource("ConcavePolygonShape3D_lquwl")
+
+[node name="CSGBakedMeshInstance3D" type="MeshInstance3D" parent="Obstacles/Node3D4"]
+mesh = SubResource("ArrayMesh_7mycd")
+skeleton = NodePath("../../root/@EditorNode@21394/@Panel@14/@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@26/DockVSplitCenter/@VSplitContainer@54/@VBoxContainer@55/@EditorMainScreen@102/MainScreen/@CanvasItemEditor@11634/@VSplitContainer@11286/@HSplitContainer@11288/@HSplitContainer@11290/@Control@11291/@SubViewportContainer@11292/@SubViewport@11293/Node3D/Obstacles")
 
 [node name="CSGBox3D21" type="CSGBox3D" parent="Obstacles" groups=["Obstacle"]]
 transform = Transform3D(0.5, 0, -0.866026, 0, 1, 0, 0.866026, 0, 0.5, -181.535, 8.5, 34.2196)
@@ -184,7 +229,7 @@ collision_mask = 3
 size = Vector3(11, 10, 13)
 
 [node name="Node3D" type="Node3D" parent="Obstacles"]
-transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 52, 0, 68)
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 52, -10, 68)
 
 [node name="CSGBox3D7" type="CSGBox3D" parent="Obstacles/Node3D" groups=["Obstacle"]]
 transform = Transform3D(-0.258819, 0, -0.965926, 0, 1, 0, 0.965926, 0, -0.258819, -5.49, 5, 24.402)
@@ -203,12 +248,12 @@ collision_mask = 3
 size = Vector3(16, 10, 14)
 
 [node name="CSGBox3D9" type="CSGBox3D" parent="Obstacles/Node3D" groups=["Obstacle"]]
-transform = Transform3D(-0.5, 0, -0.866026, 0, 1, 0, 0.866026, 0, -0.5, 0.822182, 1, 25.469)
+transform = Transform3D(-0.0870967, -0.836516, -0.540976, -0.933013, 0.258819, -0.25, 0.349144, 0.482963, -0.803023, 4.60328, 11, 25.92)
 layers = 3
 use_collision = true
 collision_layer = 3
 collision_mask = 3
-size = Vector3(16, 10, 14)
+size = Vector3(7, 10, 5)
 
 [node name="Node3D3" type="Node3D" parent="Obstacles"]
 transform = Transform3D(-0.638405, 0, 0.7697, 0, 1, 0, -0.7697, 0, -0.638405, 105, 0, -46.4983)

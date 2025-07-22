@@ -190,7 +190,8 @@ scale_curve = SubResource("CurveTexture_sweqy")
 scale_over_velocity_curve = SubResource("CurveTexture_2hs0m")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hqtel"]
-shading_mode = 0
+diffuse_mode = 3
+specular_mode = 2
 albedo_color = Color(0.481746, 0.335879, 0.190592, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_1jxqw"]
