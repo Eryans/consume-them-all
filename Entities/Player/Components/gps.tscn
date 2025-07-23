@@ -6,6 +6,7 @@
 emission_enabled = true
 emission = Color(1, 0.802791, 0.275656, 1)
 emission_energy_multiplier = 2.0
+disable_receive_shadows = true
 
 [sub_resource type="PrismMesh" id="PrismMesh_w4vn2"]
 

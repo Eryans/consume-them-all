@@ -16,6 +16,10 @@ public partial class Gps : Node3D
 	public void SetTarget(Node3D newTarget)
 	{
 		Target = newTarget;
+		if (!IsInstanceValid(Target))
+		{
+			Visible = false;
+		}
 		GD.Print(Target);
 	}
 }

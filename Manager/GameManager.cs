@@ -58,5 +58,6 @@ public partial class GameManager : Node
 	private void OnStayAliveTimerTimeout()
 	{
 		WinOrGameOverEvent?.Invoke(false);
+		StayAliveTimer.Stop();
 	}
 }

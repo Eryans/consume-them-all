@@ -21,6 +21,7 @@ public partial class Player : CharacterBody3D
 
 	private Node3D visual;
 	private Timer stunedTimer = new();
+	private Timer gpsTimer = new();
 	private Vector3 stunedDirection = new();
 	private State currentState = State.Normal;
 	private Tween tw;
@@ -29,6 +30,7 @@ public partial class Player : CharacterBody3D
 	private EntityDetector entityDetector;
 	private Gps gps;
 	public event Action<int> AteRewardableEntityEvent;
+
 	public override void _Ready()
 	{
 		animationPlayer = GetNode<AnimationPlayer>("%AnimationPlayer");
@@ -38,10 +40,18 @@ public partial class Player : CharacterBody3D
 		entityDetector.HitObstacleEvent += OnHitObstacle;
 		entityDetector.ConsumeEntityEvent += OnConsumeEntity;
 		AddChild(stunedTimer);
-
+		AddChild(gpsTimer);
+		gpsTimer.Timeout += OnGpsTimerTimeout;
 		stunedTimer.Timeout += OnStunedTimerTimeout;
 		GameManager.Instance.WinOrGameOverEvent += OnWinOrGameOver;
 		SetNewGPSNearestTarget();
+		gpsTimer.Start(1);
+	}
+
+	private void OnGpsTimerTimeout()
+	{
+		SetNewGPSNearestTarget();
+		gpsTimer.Start(1);
 	}
 
 	private void OnWinOrGameOver(bool obj)

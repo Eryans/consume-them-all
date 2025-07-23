@@ -177,7 +177,7 @@ collision_layer = 3
 collision_mask = 3
 size = Vector3(32, 10, 20)
 
-[node name="Node3D4" type="StaticBody3D" parent="NavigationRegion3D/Obstacles"]
+[node name="Node3D4" type="StaticBody3D" parent="NavigationRegion3D/Obstacles" groups=["Obstacle"]]
 
 [node name="CSGBakedCollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Obstacles/Node3D4"]
 shape = SubResource("ConcavePolygonShape3D_lquwl")
@@ -242,7 +242,7 @@ collision_layer = 3
 collision_mask = 3
 size = Vector3(11, 10, 13)
 
-[node name="Node3D" type="Node3D" parent="NavigationRegion3D/Obstacles"]
+[node name="Node3D" type="Node3D" parent="NavigationRegion3D/Obstacles" groups=["Obstacle"]]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 52, -10, 68)
 
 [node name="CSGBox3D7" type="CSGBox3D" parent="NavigationRegion3D/Obstacles/Node3D" groups=["Obstacle"]]
@@ -269,7 +269,7 @@ collision_layer = 3
 collision_mask = 3
 size = Vector3(7, 10, 5)
 
-[node name="Node3D3" type="Node3D" parent="NavigationRegion3D/Obstacles"]
+[node name="Node3D3" type="Node3D" parent="NavigationRegion3D/Obstacles" groups=["Obstacle"]]
 transform = Transform3D(-0.638405, 0, 0.7697, 0, 1, 0, -0.7697, 0, -0.638405, 105, 0, -46.4983)
 
 [node name="CSGBox3D7" type="CSGBox3D" parent="NavigationRegion3D/Obstacles/Node3D3" groups=["Obstacle"]]
@@ -296,7 +296,7 @@ collision_layer = 3
 collision_mask = 3
 size = Vector3(16, 10, 14)
 
-[node name="Node3D2" type="Node3D" parent="NavigationRegion3D/Obstacles"]
+[node name="Node3D2" type="Node3D" parent="NavigationRegion3D/Obstacles" groups=["Obstacle"]]
 transform = Transform3D(0.683013, -0.258819, 0.683013, 0.183013, 0.965926, 0.183013, -0.707107, 0, 0.707107, -123, -8, 11)
 
 [node name="CSGBox3D7" type="CSGBox3D" parent="NavigationRegion3D/Obstacles/Node3D2" groups=["Obstacle"]]
