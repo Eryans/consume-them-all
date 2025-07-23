@@ -95,7 +95,7 @@ _data = {
 [node name="MovingEntity" type="Area3D" groups=["Consumable"]]
 script = ExtResource("1_o33c0")
 maxDistanceToPlayer = 250.0
-fleeSpeed = 25.0
+fleeSpeed = 22.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
