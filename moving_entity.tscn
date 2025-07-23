@@ -95,7 +95,7 @@ _data = {
 [node name="MovingEntity" type="Area3D" groups=["Consumable"]]
 script = ExtResource("1_o33c0")
 maxDistanceToPlayer = 250.0
-speed = 25.0
+fleeSpeed = 25.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_sxl1b")
@@ -124,3 +124,5 @@ libraries = {
 target_position = Vector3(0, 0, 4)
 collision_mask = 2
 debug_shape_custom_color = Color(1, 0, 0, 1)
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
