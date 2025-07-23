@@ -3,6 +3,7 @@ using Godot.Collections;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Intrinsics.Arm;
 
 public partial class Player : CharacterBody3D
 {
@@ -28,7 +29,9 @@ public partial class Player : CharacterBody3D
 	private Tween rtw;
 	private AnimationPlayer animationPlayer;
 	private EntityDetector entityDetector;
+	private RandomNumberGenerator rdm = new();
 	private Gps gps;
+	private AudioStreamPlayer eatGnomeSoundPlayer;
 	public event Action<int> AteRewardableEntityEvent;
 
 	public override void _Ready()
@@ -36,6 +39,7 @@ public partial class Player : CharacterBody3D
 		animationPlayer = GetNode<AnimationPlayer>("%AnimationPlayer");
 		visual = GetNode<Node3D>("%Visual");
 		gps = GetNode<Gps>("GPS");
+		eatGnomeSoundPlayer = GetNode<AudioStreamPlayer>("%EatGnome");
 		entityDetector = GetNode<EntityDetector>("EntityDetector");
 		entityDetector.HitObstacleEvent += OnHitObstacle;
 		entityDetector.ConsumeEntityEvent += OnConsumeEntity;
@@ -71,6 +75,8 @@ public partial class Player : CharacterBody3D
 		animationPlayer.Play("Eat");
 		if (entity.IsInGroup("Consumable"))
 		{
+			eatGnomeSoundPlayer.PitchScale = rdm.RandfRange(.8f, 1.2f);
+			eatGnomeSoundPlayer.Play();
 			entity.RemoveFromGroup("Consumable");
 			AteRewardableEntityEvent?.Invoke(bonusTime);
 		}

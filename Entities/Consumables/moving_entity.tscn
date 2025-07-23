@@ -1,7 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://btebxwdonw7tr"]
+[gd_scene load_steps=13 format=3 uid="uid://btebxwdonw7tr"]
 
 [ext_resource type="Script" uid="uid://cnvnv0jmxrofx" path="res://Entities/Consumables/MovingEntity.cs" id="1_o33c0"]
+[ext_resource type="PackedScene" uid="uid://6mkwknq8xrss" path="res://Entities/Consumables/Gnome.glb" id="2_r31fo"]
 [ext_resource type="Script" uid="uid://qhuvmo1xlwo1" path="res://Entities/Consumables/Consumable.cs" id="2_v7cii"]
+[ext_resource type="AudioStream" uid="uid://rvrpfnw38cq6" path="res://Entities/Consumables/im-a-gnome-meme-sound-effect-woo.mp3" id="4_y6ccf"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sxl1b"]
 
@@ -101,8 +103,12 @@ fleeSpeed = 22.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
 shape = SubResource("CapsuleShape3D_sxl1b")
 
+[node name="Gnome" parent="." instance=ExtResource("2_r31fo")]
+transform = Transform3D(2.52361, 0, 0, 0, 1.36687, 0, 0, 0, 2.69294, 0, 0.3, -0.1)
+
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1.2, 0, 0, 0, 1, 0, 1.2, 0)
+visible = false
 mesh = SubResource("CapsuleMesh_mak6n")
 surface_material_override/0 = SubResource("StandardMaterial3D_o33c0")
 
@@ -127,3 +133,8 @@ collision_mask = 2
 debug_shape_custom_color = Color(1, 0, 0, 1)
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+
+[node name="Wooh" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("4_y6ccf")
+volume_db = -0.25

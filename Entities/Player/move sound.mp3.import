@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://tpm5gwmf08h3"
+path="res://.godot/imported/move sound.mp3-8a0242e15d8dd688bc04ff8506b9aadd.mp3str"
+
+[deps]
+
+source_file="res://Entities/Player/move sound.mp3"
+dest_files=["res://.godot/imported/move sound.mp3-8a0242e15d8dd688bc04ff8506b9aadd.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

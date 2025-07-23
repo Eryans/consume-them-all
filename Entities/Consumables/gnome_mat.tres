@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://cgwyyft7m8pc7"]
+
+[ext_resource type="Texture2D" uid="uid://df7ciaqpfxn3" path="res://Entities/Consumables/Gnome_gnome texture.png" id="1_45vlv"]
+
+[resource]
+diffuse_mode = 3
+specular_mode = 2
+albedo_texture = ExtResource("1_45vlv")
+roughness = 0.0

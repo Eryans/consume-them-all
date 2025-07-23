@@ -16,6 +16,7 @@ public partial class MovingEntity : Area3D
 	private AnimationPlayer animationPlayer;
 	private RayCast3D rayCast3D;
 	private NavigationAgent3D navigationAgent3D;
+	private AudioStreamPlayer audioStreamPlayer;
 	private enum State
 	{
 		Normal,
@@ -30,6 +31,8 @@ public partial class MovingEntity : Area3D
 		rayCast3D = GetNode<RayCast3D>("RayCast3D");
 		animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
 		navigationAgent3D = GetNode<NavigationAgent3D>("NavigationAgent3D");
+		audioStreamPlayer = GetNode<AudioStreamPlayer>("%Wooh");
+
 		navigationAgent3D.TargetReached += OnNavAgentTargetReached;
 		SetRoamOrFleeTarget();
 	}
@@ -120,6 +123,7 @@ public partial class MovingEntity : Area3D
 
 	private void SetFleeingVelocity(float? angle)
 	{
+		audioStreamPlayer.Play();
 		currentState = State.Fleeing;
 		float length = 20;
 		// fleeingDirectionTimer.Start(rdm.Randf() * 2);

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dvjhslij17ily"
+path="res://.godot/imported/gnome is eaten sfx.mp3-72e97d567b9303b6d9a87115c1a49258.mp3str"
+
+[deps]
+
+source_file="res://Entities/Consumables/gnome is eaten sfx.mp3"
+dest_files=["res://.godot/imported/gnome is eaten sfx.mp3-72e97d567b9303b6d9a87115c1a49258.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
