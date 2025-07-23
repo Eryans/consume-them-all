@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bxtuiif4llbb8"]
 
-[ext_resource type="Script" uid="uid://b8ru47kk2co1j" path="res://Gps.cs" id="1_rajp7"]
+[ext_resource type="Script" uid="uid://b8ru47kk2co1j" path="res://Entities/Player/Components/Gps.cs" id="1_rajp7"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rjufp"]
 emission_enabled = true

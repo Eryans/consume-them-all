@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=4 uid="uid://b03suy6eink87"]
 
-[ext_resource type="Script" uid="uid://qhuvmo1xlwo1" path="res://Consumable.cs" id="1_brfkd"]
+[ext_resource type="Script" uid="uid://qhuvmo1xlwo1" path="res://Entities/Consumables/Consumable.cs" id="1_k5o3g"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nnvrw"]
 albedo_color = Color(0.537186, 0.308029, 0.240454, 1)
@@ -40,5 +40,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7375, 0)
 shape = SubResource("CylinderShape3D_44ud8")
 
 [node name="Consumable" type="Node" parent="."]
-script = ExtResource("1_brfkd")
+script = ExtResource("1_k5o3g")
 metadata/_custom_type_script = "uid://qhuvmo1xlwo1"

@@ -1,9 +1,9 @@
 [gd_scene load_steps=28 format=4 uid="uid://cf716bjk3sjh6"]
 
-[ext_resource type="Script" uid="uid://ba8swiagxv6v4" path="res://Player.cs" id="1_4flbx"]
-[ext_resource type="Texture2D" uid="uid://b1v8tu3hp4v" path="res://Monster_Untitled.png" id="2_i3pqv"]
-[ext_resource type="Script" uid="uid://cykrgf2yaij0d" path="res://EntityDetector.cs" id="2_onrkg"]
-[ext_resource type="PackedScene" uid="uid://bxtuiif4llbb8" path="res://gps.tscn" id="3_hqtel"]
+[ext_resource type="Script" uid="uid://ba8swiagxv6v4" path="res://Entities/Player/Player.cs" id="1_4flbx"]
+[ext_resource type="Texture2D" uid="uid://b1v8tu3hp4v" path="res://Entities/Player/Monster_Untitled.png" id="2_i3pqv"]
+[ext_resource type="Script" uid="uid://cykrgf2yaij0d" path="res://Entities/Player/Components/EntityDetector.cs" id="2_onrkg"]
+[ext_resource type="PackedScene" uid="uid://bxtuiif4llbb8" path="res://Entities/Player/Components/gps.tscn" id="3_hqtel"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_h2yge"]
 radius = 1.4

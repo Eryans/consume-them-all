@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bp00khgvv5w1"]
 
-[ext_resource type="PackedScene" uid="uid://ccfecc3cqxt3a" path="res://consumable.tscn" id="2_10yop"]
+[ext_resource type="PackedScene" uid="uid://ccfecc3cqxt3a" path="res://Entities/Consumables/consumable.tscn" id="2_10yop"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_1bvp3"]
 

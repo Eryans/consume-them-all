@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b1v8tu3hp4v"
-path="res://.godot/imported/Monster_Untitled.png-c0a58ce38d0b17f9ef8e542d9094bcdc.ctex"
+path="res://.godot/imported/Monster_Untitled.png-93082c229250050ba2c09144df155bd2.ctex"
 metadata={
 "vram_texture": false
 }
@@ -13,8 +13,8 @@ generator_parameters={
 
 [deps]
 
-source_file="res://Monster_Untitled.png"
-dest_files=["res://.godot/imported/Monster_Untitled.png-c0a58ce38d0b17f9ef8e542d9094bcdc.ctex"]
+source_file="res://Entities/Player/Monster_Untitled.png"
+dest_files=["res://.godot/imported/Monster_Untitled.png-93082c229250050ba2c09144df155bd2.ctex"]
 
 [params]
 

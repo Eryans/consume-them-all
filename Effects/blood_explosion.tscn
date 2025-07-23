@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://br3qnla0f77d7"]
 
-[ext_resource type="Script" uid="uid://b5w5rtm525ryf" path="res://BloodExplosion.cs" id="1_c24p1"]
+[ext_resource type="Script" uid="uid://b5w5rtm525ryf" path="res://Effects/BloodExplosion.cs" id="1_c24p1"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_86mno"]
 particle_flag_align_y = true

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bx4os13hcq6ew"]
 
-[ext_resource type="Script" uid="uid://c2ireyfyjgyx3" path="res://CameraFollow.cs" id="1_7133y"]
+[ext_resource type="Script" uid="uid://c2ireyfyjgyx3" path="res://Others/CameraFollow.cs" id="1_7133y"]
 
 [sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_ig7tw"]
 

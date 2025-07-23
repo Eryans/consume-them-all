@@ -1,10 +1,10 @@
 [gd_scene load_steps=13 format=4 uid="uid://bs7fac4gqq38d"]
 
-[ext_resource type="PackedScene" uid="uid://bx4os13hcq6ew" path="res://FollowCamera.tscn" id="1_0xm2m"]
-[ext_resource type="Script" uid="uid://cimcohihg0ya2" path="res://GameManager.cs" id="1_7mycd"]
-[ext_resource type="PackedScene" uid="uid://cf716bjk3sjh6" path="res://player.tscn" id="2_h2yge"]
-[ext_resource type="PackedScene" uid="uid://btebxwdonw7tr" path="res://moving_entity.tscn" id="5_lquwl"]
-[ext_resource type="PackedScene" uid="uid://cw1l3g7lrqlhq" path="res://control.tscn" id="7_272bh"]
+[ext_resource type="PackedScene" uid="uid://bx4os13hcq6ew" path="res://Others/FollowCamera.tscn" id="1_0xm2m"]
+[ext_resource type="Script" uid="uid://cimcohihg0ya2" path="res://Manager/GameManager.cs" id="1_7mycd"]
+[ext_resource type="PackedScene" uid="uid://cf716bjk3sjh6" path="res://Entities/Player/player.tscn" id="2_h2yge"]
+[ext_resource type="PackedScene" uid="uid://btebxwdonw7tr" path="res://Entities/Consumables/moving_entity.tscn" id="5_lquwl"]
+[ext_resource type="PackedScene" uid="uid://cw1l3g7lrqlhq" path="res://UI/control.tscn" id="7_272bh"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_lquwl"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)

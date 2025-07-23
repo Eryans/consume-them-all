@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://btebxwdonw7tr"]
 
-[ext_resource type="Script" uid="uid://cnvnv0jmxrofx" path="res://MovingEntity.cs" id="1_o33c0"]
-[ext_resource type="Script" uid="uid://qhuvmo1xlwo1" path="res://Consumable.cs" id="2_v7cii"]
+[ext_resource type="Script" uid="uid://cnvnv0jmxrofx" path="res://Entities/Consumables/MovingEntity.cs" id="1_o33c0"]
+[ext_resource type="Script" uid="uid://qhuvmo1xlwo1" path="res://Entities/Consumables/Consumable.cs" id="2_v7cii"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sxl1b"]
 
