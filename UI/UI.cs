@@ -6,7 +6,7 @@ public partial class UI : Control
 	private Player player;
 	private RichTextLabel tinyDudeCount;
 	private ProgressBar ProgressBar;
-	private Panel panel;
+	private PanelContainer panel;
 	private RichTextLabel winOrGameOverText;
 	public override void _Ready()
 	{
@@ -15,7 +15,7 @@ public partial class UI : Control
 		player = (Player)GetTree().GetFirstNodeInGroup("Player");
 		tinyDudeCount = GetNode<RichTextLabel>("%TinyDudeCounter");
 		ProgressBar = GetNode<ProgressBar>("%ProgressBar");
-		panel = GetNode<Panel>("Panel");
+		panel = GetNode<PanelContainer>("Panel");
 		winOrGameOverText = GetNode<RichTextLabel>("%WinOrGameOverText");
 		panel.Visible = false;
 	}
@@ -26,7 +26,7 @@ public partial class UI : Control
 		panel.Visible = true;
 		float originalPanelPosY = panel.Position.Y;
 		panel.Position = panel.Position with { Y = -(GetViewport().GetVisibleRect().Size.Y + 200) };
-		winOrGameOverText.Text = trueWinFalseGameover ? "You consumed all the tiny dudes ! \n You win !" : "Game over ! \n You didn't consume enough tiny dudes >:( !";
+		winOrGameOverText.Text = trueWinFalseGameover ? "You consumed all the gnomes ! \n You win !" : "Game over ! \n You didn't consume enough gnomes and now you've been gnomed !";
 		panelTw.TweenProperty(panel, "position:y", originalPanelPosY, 2f).SetTrans(Tween.TransitionType.Bounce).SetEase(Tween.EaseType.Out);
 	}
 
