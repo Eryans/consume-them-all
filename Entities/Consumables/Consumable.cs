@@ -17,6 +17,5 @@ public partial class Consumable : Node
 		GetTree().CurrentScene.AddChild(explosion);
 		explosion.GlobalPosition = GetOwner<Node3D>().GlobalPosition;
 		Owner.QueueFree();
-
 	}
 }

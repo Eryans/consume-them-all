@@ -41,7 +41,10 @@ public partial class UI : Control
 	}
 	public override void _Process(double delta)
 	{
-		ProgressBar.MaxValue = player.MaxAliveTime;
-		ProgressBar.Value = player.StayAliveTimer.TimeLeft;
+		if (!GameManager.Instance.StayAliveTimer.Paused)
+		{
+			ProgressBar.MaxValue = GameManager.Instance.MaxAliveTime;
+			ProgressBar.Value = GameManager.Instance.StayAliveTimer.TimeLeft;
+		}
 	}
 }

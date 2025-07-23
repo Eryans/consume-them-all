@@ -1,10 +1,10 @@
 [gd_scene load_steps=13 format=4 uid="uid://bs7fac4gqq38d"]
 
-[ext_resource type="PackedScene" uid="uid://bx4os13hcq6ew" path="res://Others/FollowCamera.tscn" id="1_0xm2m"]
-[ext_resource type="Script" uid="uid://cimcohihg0ya2" path="res://Manager/GameManager.cs" id="1_7mycd"]
-[ext_resource type="PackedScene" uid="uid://cf716bjk3sjh6" path="res://Entities/Player/player.tscn" id="2_h2yge"]
-[ext_resource type="PackedScene" uid="uid://btebxwdonw7tr" path="res://Entities/Consumables/moving_entity.tscn" id="5_lquwl"]
-[ext_resource type="PackedScene" uid="uid://cw1l3g7lrqlhq" path="res://UI/control.tscn" id="7_272bh"]
+[ext_resource type="Script" uid="uid://cimcohihg0ya2" path="res://Manager/GameManager.cs" id="1_kry3j"]
+[ext_resource type="PackedScene" uid="uid://bx4os13hcq6ew" path="res://Others/FollowCamera.tscn" id="2_21xkr"]
+[ext_resource type="PackedScene" uid="uid://cf716bjk3sjh6" path="res://Entities/Player/player.tscn" id="3_6bp64"]
+[ext_resource type="PackedScene" uid="uid://cw1l3g7lrqlhq" path="res://UI/control.tscn" id="4_344ge"]
+[ext_resource type="PackedScene" uid="uid://btebxwdonw7tr" path="res://Entities/Consumables/moving_entity.tscn" id="5_ynf5e"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_lquwl"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -57,14 +57,14 @@ _surfaces = [{
 environment = SubResource("Environment_272bh")
 
 [node name="GameManager" type="Node" parent="."]
-script = ExtResource("1_7mycd")
+script = ExtResource("1_kry3j")
 
-[node name="SpringArm3D" parent="." node_paths=PackedStringArray("target") instance=ExtResource("1_0xm2m")]
+[node name="SpringArm3D" parent="." node_paths=PackedStringArray("target") instance=ExtResource("2_21xkr")]
 transform = Transform3D(1, 0, 0, 0, 0.766044, 0.642787, 0, -0.642787, 0.766044, 0, 0, 0)
 target = NodePath("../Player")
 speed = 10.0
 
-[node name="Player" parent="." instance=ExtResource("2_h2yge")]
+[node name="Player" parent="." instance=ExtResource("3_6bp64")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.51987, 0)
 Speed = 30.0
 
@@ -77,22 +77,10 @@ shadow_enabled = true
 transform = Transform3D(-0.700611, -0.192894, -0.686977, 0.711516, -0.116331, -0.692973, 0.0537534, -0.974299, 0.21875, 0, 14, 18)
 light_color = Color(0.593285, 0.757485, 0.840068, 1)
 
-[node name="Control" parent="." instance=ExtResource("7_272bh")]
+[node name="Control" parent="." instance=ExtResource("4_344ge")]
 
-[node name="MovingEntity" parent="." instance=ExtResource("5_lquwl")]
+[node name="MovingEntity" parent="." instance=ExtResource("5_ynf5e")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -16)
-
-[node name="MovingEntity2" parent="." instance=ExtResource("5_lquwl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 2, 11)
-
-[node name="MovingEntity3" parent="." instance=ExtResource("5_lquwl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 2, 19)
-
-[node name="MovingEntity4" parent="." instance=ExtResource("5_lquwl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 2, 24)
-
-[node name="MovingEntity5" parent="." instance=ExtResource("5_lquwl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21, 2, 6)
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_lquwl")

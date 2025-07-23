@@ -18,50 +18,43 @@ public partial class Player : CharacterBody3D
 	public float Speed = 5.0f;
 	[Export]
 	private float stunedDuration = 2;
-	[Export]
-	public float MaxAliveTime { get; private set; } = 30f;
+
 	private Node3D visual;
 	private Timer stunedTimer = new();
-	public Timer StayAliveTimer { get; private set; } = new();
 	private Vector3 stunedDirection = new();
 	private State currentState = State.Normal;
 	private Tween tw;
 	private Tween rtw;
-	public event Action AteRewardableEntityEvent;
-	public event Action PlayerDeathEvent;
 	private AnimationPlayer animationPlayer;
+	private EntityDetector entityDetector;
 	private Gps gps;
+	public event Action<int> AteRewardableEntityEvent;
 	public override void _Ready()
 	{
 		animationPlayer = GetNode<AnimationPlayer>("%AnimationPlayer");
 		visual = GetNode<Node3D>("%Visual");
 		gps = GetNode<Gps>("GPS");
-		EntityDetector entityDetector = GetNode<EntityDetector>("EntityDetector");
+		entityDetector = GetNode<EntityDetector>("EntityDetector");
 		entityDetector.HitObstacleEvent += OnHitObstacle;
 		entityDetector.ConsumeEntityEvent += OnConsumeEntity;
 		AddChild(stunedTimer);
-		AddChild(StayAliveTimer);
-		StayAliveTimer.Start(MaxAliveTime);
+
 		stunedTimer.Timeout += OnStunedTimerTimeout;
-		StayAliveTimer.Timeout += OnStayAliveTimerTimeout;
 		GameManager.Instance.WinOrGameOverEvent += OnWinOrGameOver;
 		SetNewGPSNearestTarget();
 	}
 
 	private void OnWinOrGameOver(bool obj)
 	{
+		stunedTimer.Stop();
+		entityDetector.SetProcess(false);
 		currentState = State.Inactive;
 	}
 	public override void _ExitTree()
 	{
 		GameManager.Instance.WinOrGameOverEvent -= OnWinOrGameOver;
 	}
-	private void OnStayAliveTimerTimeout()
-	{
-		currentState = State.Inactive;
-		StayAliveTimer.Stop();
-		PlayerDeathEvent?.Invoke();
-	}
+
 
 	private void OnConsumeEntity(Node3D entity, int bonusTime)
 	{
@@ -69,10 +62,7 @@ public partial class Player : CharacterBody3D
 		if (entity.IsInGroup("Consumable"))
 		{
 			entity.RemoveFromGroup("Consumable");
-			AteRewardableEntityEvent?.Invoke();
-			float newTime = (float)Mathf.Clamp(StayAliveTimer.TimeLeft + bonusTime, 0, MaxAliveTime);
-			StayAliveTimer.Stop();
-			StayAliveTimer.Start(newTime);
+			AteRewardableEntityEvent?.Invoke(bonusTime);
 		}
 		SetNewGPSNearestTarget();
 	}

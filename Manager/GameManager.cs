@@ -3,11 +3,16 @@ using Godot;
 
 public partial class GameManager : Node
 {
-	private int maxConsumables;
+	[Export]
+	public float MaxAliveTime { get; private set; } = 30f;
 	public static GameManager Instance { get; private set; }
-	private Player player;
 	public event Action<bool> WinOrGameOverEvent;
 	public event EventHandler<GameDataEventArgs> UpdateGameDataEvent;
+	public Timer StayAliveTimer { get; private set; } = new();
+
+	private Player player;
+	private int maxConsumables;
+
 	public class GameDataEventArgs : EventArgs
 	{
 		public int consumablesLeft;
@@ -20,37 +25,38 @@ public partial class GameManager : Node
 			GD.Print("WARNING : GameManager Instance alreadyExist !");
 		}
 		Instance = this;
+
 		player = (Player)GetTree().GetFirstNodeInGroup("Player");
 		maxConsumables = GetTree().GetNodeCountInGroup("Consumable");
+
+		AddChild(StayAliveTimer);
+		StayAliveTimer.Start(MaxAliveTime);
+
 		player.AteRewardableEntityEvent += OnPlayerAteRewardableEntity;
-		player.PlayerDeathEvent += OnPlayerDeath;
+		StayAliveTimer.Timeout += OnStayAliveTimerTimeout;
+
 		Callable.From(() =>
 		{
 			UpdateGameDataEvent?.Invoke(this, new GameDataEventArgs { maxConsumables = maxConsumables, consumablesLeft = maxConsumables });
 		}).CallDeferred();
 	}
 
-	private void OnPlayerDeath()
-	{
-		// Game Over Logic
-		WinOrGameOverEvent?.Invoke(false);
-		GD.Print("game over");
-	}
-
-	private void OnPlayerAteRewardableEntity()
+	private void OnPlayerAteRewardableEntity(int bonusTime)
 	{
 		int consumablesLeft = GetTree().GetNodeCountInGroup("Consumable");
 		UpdateGameDataEvent?.Invoke(this, new GameDataEventArgs { maxConsumables = maxConsumables, consumablesLeft = consumablesLeft });
+		float newTime = (float)Mathf.Clamp(StayAliveTimer.TimeLeft + bonusTime, 0, MaxAliveTime);
+		StayAliveTimer.Stop();
+		StayAliveTimer.Start(newTime);
 		if (consumablesLeft <= 0)
 		{
 			// Win Condition
-			GD.Print("You win !");
+			StayAliveTimer.Paused = true;
 			WinOrGameOverEvent?.Invoke(true);
-			Callable.From(player.StayAliveTimer.Stop).CallDeferred();
 		}
 	}
-
-	public override void _Process(double delta)
+	private void OnStayAliveTimerTimeout()
 	{
+		WinOrGameOverEvent?.Invoke(false);
 	}
 }
