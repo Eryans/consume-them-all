@@ -36,7 +36,6 @@ public partial class UI : Control
 	}
 	private void OnUpdateGameData(object sender, GameManager.GameDataEventArgs e)
 	{
-		GD.Print("update");
 		tinyDudeCount.Text = $"{e.consumablesLeft} / {e.maxConsumables}";
 	}
 	public override void _Process(double delta)
