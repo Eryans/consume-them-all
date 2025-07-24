@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://ixu1qbgit3t"
-path="res://.godot/imported/Monster.glb-14c5e302f3ac7f469874f5a47da65c1e.scn"
+path="res://.godot/imported/Monster.glb-711f087bc0595e9364d13575be487067.scn"
 
 [deps]
 
-source_file="res://Entities/Player/Monster.glb"
-dest_files=["res://.godot/imported/Monster.glb-14c5e302f3ac7f469874f5a47da65c1e.scn"]
+source_file="res://Entities/Player/Mesh/Monster.glb"
+dest_files=["res://.godot/imported/Monster.glb-711f087bc0595e9364d13575be487067.scn"]
 
 [params]
 

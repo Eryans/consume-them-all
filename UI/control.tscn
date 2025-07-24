@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://cw1l3g7lrqlhq"]
 
 [ext_resource type="Script" uid="uid://bi5qn2lofbhqh" path="res://UI/UI.cs" id="1_0fbet"]
-[ext_resource type="Texture2D" uid="uid://b6pkc1smyuf0c" path="res://Entities/Player/Capture d’écran du 2025-07-23 16-23-05.png" id="2_filc1"]
+[ext_resource type="Texture2D" uid="uid://b6pkc1smyuf0c" path="res://UI/Capture d’écran du 2025-07-23 16-23-05.png" id="2_filc1"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7mycd"]
 content_margin_left = 2.0

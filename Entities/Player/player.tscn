@@ -1,13 +1,13 @@
 [gd_scene load_steps=35 format=4 uid="uid://cf716bjk3sjh6"]
 
 [ext_resource type="Script" uid="uid://ba8swiagxv6v4" path="res://Entities/Player/Player.cs" id="1_4flbx"]
-[ext_resource type="Texture2D" uid="uid://b1v8tu3hp4v" path="res://Entities/Player/Monster_Untitled.png" id="2_i3pqv"]
+[ext_resource type="Texture2D" uid="uid://b1v8tu3hp4v" path="res://Entities/Player/Mesh/Monster_Untitled.png" id="2_i3pqv"]
 [ext_resource type="Script" uid="uid://cykrgf2yaij0d" path="res://Entities/Player/Components/EntityDetector.cs" id="2_onrkg"]
 [ext_resource type="PackedScene" uid="uid://bxtuiif4llbb8" path="res://Entities/Player/Components/gps.tscn" id="3_hqtel"]
 [ext_resource type="AudioStream" uid="uid://dvjhslij17ily" path="res://Entities/Consumables/gnome is eaten sfx.mp3" id="5_5c2io"]
-[ext_resource type="AudioStream" uid="uid://tpm5gwmf08h3" path="res://Entities/Player/move sound.mp3" id="6_4wf4l"]
-[ext_resource type="AudioStream" uid="uid://cmg7fd3mtq6a4" path="res://Entities/Player/bump.mp3" id="6_7a1se"]
-[ext_resource type="AudioStream" uid="uid://dfks8pbwgff00" path="res://Entities/Player/gnome-loop-sfx.mp3" id="7_01a4e"]
+[ext_resource type="AudioStream" uid="uid://tpm5gwmf08h3" path="res://Entities/Player/sound/move sound.mp3" id="6_4wf4l"]
+[ext_resource type="AudioStream" uid="uid://cmg7fd3mtq6a4" path="res://Entities/Player/sound/bump.mp3" id="6_7a1se"]
+[ext_resource type="AudioStream" uid="uid://dfks8pbwgff00" path="res://Entities/Player/sound/gnome-loop-sfx.mp3" id="7_01a4e"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_h2yge"]
 radius = 1.4
@@ -376,7 +376,7 @@ volume_db = -0.25
 [node name="Bump" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("6_7a1se")
-volume_db = -0.25
+volume_db = -7.5
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_4wf4l")
