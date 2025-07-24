@@ -9,7 +9,7 @@ public partial class Gps : Node3D
 		if (IsInstanceValid(Target))
 		{
 			Vector3 lookAtDirection = Target.GlobalPosition - GlobalPosition;
-			Rotation = Rotation with { Y = Mathf.Atan2(lookAtDirection.X, lookAtDirection.Z) };
+			Rotation = Rotation with { Y = Mathf.LerpAngle(Rotation.Y, Mathf.Atan2(lookAtDirection.X, lookAtDirection.Z), (float)GetPhysicsProcessDeltaTime()) };
 		}
 	}
 
