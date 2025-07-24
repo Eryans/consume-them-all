@@ -28,18 +28,22 @@ public partial class Player : CharacterBody3D
 	private Tween tw;
 	private Tween rtw;
 	private AnimationPlayer animationPlayer;
+	private AnimationPlayer speedAnimationPlayer;
 	private EntityDetector entityDetector;
 	private RandomNumberGenerator rdm = new();
 	private Gps gps;
 	private AudioStreamPlayer eatGnomeSoundPlayer;
+	private AudioStreamPlayer bumpSoundPlayer;
 	public event Action<int> AteRewardableEntityEvent;
 
 	public override void _Ready()
 	{
 		animationPlayer = GetNode<AnimationPlayer>("%AnimationPlayer");
+		speedAnimationPlayer = GetNode<AnimationPlayer>("SpeedAnimation");
 		visual = GetNode<Node3D>("%Visual");
 		gps = GetNode<Gps>("GPS");
 		eatGnomeSoundPlayer = GetNode<AudioStreamPlayer>("%EatGnome");
+		bumpSoundPlayer = GetNode<AudioStreamPlayer>("%Bump");
 		entityDetector = GetNode<EntityDetector>("EntityDetector");
 		entityDetector.HitObstacleEvent += OnHitObstacle;
 		entityDetector.ConsumeEntityEvent += OnConsumeEntity;
@@ -104,6 +108,9 @@ public partial class Player : CharacterBody3D
 
 	private void OnHitObstacle(Vector3 vector)
 	{
+		speedAnimationPlayer.Stop();
+		bumpSoundPlayer.PitchScale = rdm.RandfRange(.8f, 1.2f);
+		bumpSoundPlayer.Play();
 		stunedTimer.Start(stunedDuration);
 		stunedDirection = (GlobalPosition - vector).Normalized();
 		stunedDirection.Y = 0;
@@ -128,6 +135,8 @@ public partial class Player : CharacterBody3D
 		switch (currentState)
 		{
 			case State.Normal:
+				if (!speedAnimationPlayer.IsPlaying())
+					speedAnimationPlayer.Play("SPEED");
 
 				Camera3D camera = GetViewport().GetCamera3D();
 				Vector2 mousePos = GetViewport().GetMousePosition();

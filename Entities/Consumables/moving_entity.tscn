@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://btebxwdonw7tr"]
+[gd_scene load_steps=10 format=3 uid="uid://btebxwdonw7tr"]
 
 [ext_resource type="Script" uid="uid://cnvnv0jmxrofx" path="res://Entities/Consumables/MovingEntity.cs" id="1_o33c0"]
 [ext_resource type="PackedScene" uid="uid://6mkwknq8xrss" path="res://Entities/Consumables/Gnome.glb" id="2_r31fo"]
@@ -7,13 +7,6 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sxl1b"]
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_mak6n"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o33c0"]
-albedo_color = Color(1, 0.369473, 0.225814, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_o33c0"]
-
 [sub_resource type="Animation" id="Animation_sxl1b"]
 resource_name = "Idle"
 loop_mode = 1
@@ -21,26 +14,14 @@ step = 0.0333333
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("MeshInstance3D:rotation")
+tracks/0/path = NodePath("Gnome:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("MeshInstance3D:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
+"times": PackedFloat32Array(0, 0.49, 1),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector3(1, 1, 1), Vector3(1, 1.2, 1), Vector3(1, 1, 1)]
+"values": [Vector3(2.5, 1.421, 2.5), Vector3(2.5, 1.646, 2.5), Vector3(2.5, 1.421, 2.5)]
 }
 
 [sub_resource type="Animation" id="Animation_o33c0"]
@@ -50,14 +31,26 @@ step = 0.0333333
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("MeshInstance3D:rotation")
+tracks/0/path = NodePath("Gnome:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.5, 1),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0.261799), Vector3(0, 0, -0.261799), Vector3(0, 0, 0.261799)]
+"values": [Vector3(0, 0, -0.261799), Vector3(0, 0, 0.261799), Vector3(0, 0, -0.261799)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Gnome:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.28, 0.5, 0.766667, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0.3, -0.1), Vector3(0, 0.615, -0.1), Vector3(0, 0.3, -0.1), Vector3(0, 0.615, -0.1), Vector3(0, 0.3, -0.1)]
 }
 
 [sub_resource type="Animation" id="Animation_v7cii"]
@@ -65,26 +58,38 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("MeshInstance3D:rotation")
+tracks/0/path = NodePath("Gnome:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0, 0, 0)]
+"values": [Vector3(0, 0, -0.261799)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("MeshInstance3D:scale")
+tracks/1/path = NodePath("Gnome:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(1, 1.2, 1)]
+"values": [Vector3(0, 0.3, -0.1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Gnome:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(2.5, 1.421, 2.5)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mak6n"]
@@ -104,18 +109,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
 shape = SubResource("CapsuleShape3D_sxl1b")
 
 [node name="Gnome" parent="." instance=ExtResource("2_r31fo")]
-transform = Transform3D(2.52361, 0, 0, 0, 1.36687, 0, 0, 0, 2.69294, 0, 0.3, -0.1)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1.2, 0, 0, 0, 1, 0, 1.2, 0)
-visible = false
-mesh = SubResource("CapsuleMesh_mak6n")
-surface_material_override/0 = SubResource("StandardMaterial3D_o33c0")
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="MeshInstance3D"]
-transform = Transform3D(0.6, 0, 0, 0, 0.3, 0, 0, 0, 1, 0, 0.3, 0.2)
-mesh = SubResource("BoxMesh_o33c0")
-skeleton = NodePath("../../root/@EditorNode@21394/@Panel@14/@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@26/DockVSplitCenter/@VSplitContainer@54/@VBoxContainer@55/@EditorMainScreen@102/MainScreen/@CanvasItemEditor@11634/@VSplitContainer@11286/@HSplitContainer@11288/@HSplitContainer@11290/@Control@11291/@SubViewportContainer@11292/@SubViewport@11293/Node3D")
+transform = Transform3D(2.41481, 0.367782, 0, -0.647048, 1.37258, 0, 0, 0, 2.5, 0, 0.3, -0.1)
 
 [node name="Consumable" type="Node" parent="."]
 script = ExtResource("2_v7cii")
@@ -138,3 +132,4 @@ debug_shape_custom_color = Color(1, 0, 0, 1)
 unique_name_in_owner = true
 stream = ExtResource("4_y6ccf")
 volume_db = -0.25
+pitch_scale = 1.5

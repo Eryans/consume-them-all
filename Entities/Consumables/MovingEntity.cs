@@ -123,6 +123,7 @@ public partial class MovingEntity : Area3D
 
 	private void SetFleeingVelocity(float? angle)
 	{
+		audioStreamPlayer.PitchScale = rdm.RandfRange(.8f, 1.5f);
 		audioStreamPlayer.Play();
 		currentState = State.Fleeing;
 		float length = 20;

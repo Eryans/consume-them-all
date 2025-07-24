@@ -86,6 +86,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -16)
 [node name="MovingEntity2" parent="." instance=ExtResource("5_ynf5e")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 2, 22)
 
+[node name="MovingEntity13" parent="." instance=ExtResource("5_ynf5e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.0482, 2, 31)
+
+[node name="MovingEntity14" parent="." instance=ExtResource("5_ynf5e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.9518, 2, -1)
+
+[node name="MovingEntity15" parent="." instance=ExtResource("5_ynf5e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.0482, 2, -34)
+
 [node name="MovingEntity3" parent="." instance=ExtResource("5_ynf5e")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45, 2, 16)
 

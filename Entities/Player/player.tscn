@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=4 uid="uid://cf716bjk3sjh6"]
+[gd_scene load_steps=35 format=4 uid="uid://cf716bjk3sjh6"]
 
 [ext_resource type="Script" uid="uid://ba8swiagxv6v4" path="res://Entities/Player/Player.cs" id="1_4flbx"]
 [ext_resource type="Texture2D" uid="uid://b1v8tu3hp4v" path="res://Entities/Player/Monster_Untitled.png" id="2_i3pqv"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://bxtuiif4llbb8" path="res://Entities/Player/Components/gps.tscn" id="3_hqtel"]
 [ext_resource type="AudioStream" uid="uid://dvjhslij17ily" path="res://Entities/Consumables/gnome is eaten sfx.mp3" id="5_5c2io"]
 [ext_resource type="AudioStream" uid="uid://tpm5gwmf08h3" path="res://Entities/Player/move sound.mp3" id="6_4wf4l"]
+[ext_resource type="AudioStream" uid="uid://cmg7fd3mtq6a4" path="res://Entities/Player/bump.mp3" id="6_7a1se"]
+[ext_resource type="AudioStream" uid="uid://dfks8pbwgff00" path="res://Entities/Player/gnome-loop-sfx.mp3" id="7_01a4e"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_h2yge"]
 radius = 1.4
@@ -233,6 +235,44 @@ albedo_color = Color(0.350727, 0.158294, 0.0123611, 1)
 [sub_resource type="PlaneMesh" id="PlaneMesh_ivps1"]
 material = SubResource("StandardMaterial3D_nvl01")
 
+[sub_resource type="Animation" id="Animation_01a4e"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visual/Monster:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.261799, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_4wf4l"]
+resource_name = "SPEED"
+loop_mode = 1
+step = 0.0333333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visual/Monster:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.261799, 0, 0), Vector3(-0.523599, 0, 0), Vector3(-0.261799, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7a1se"]
+_data = {
+&"RESET": SubResource("Animation_01a4e"),
+&"SPEED": SubResource("Animation_4wf4l")
+}
+
 [node name="Player" type="CharacterBody3D" groups=["Player"]]
 script = ExtResource("1_4flbx")
 Speed = 15.0
@@ -247,6 +287,7 @@ unique_name_in_owner = true
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, -0.1, -0.3)
 
 [node name="Monster" type="Node3D" parent="Visual"]
+transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0, 0)
 
 [node name="Armature" type="Node3D" parent="Visual/Monster"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.417154, 0.0595935)
@@ -271,7 +312,7 @@ bones/2/parent = 1
 bones/2/rest = Transform3D(1, -3.18888e-07, 1.65911e-07, 3.18888e-07, 0.573948, -0.818892, 1.65911e-07, 0.818891, 0.573948, 1.0664e-14, 0.610472, -1.49012e-08)
 bones/2/enabled = true
 bones/2/position = Vector3(1.0664e-14, 0.610472, -1.49012e-08)
-bones/2/rotation = Quaternion(0.461547, -1.89152e-14, 1.79733e-07, 0.887116)
+bones/2/rotation = Quaternion(0.461547, -1.68361e-14, 1.79733e-07, 0.887116)
 bones/2/scale = Vector3(1, 1, 1)
 bones/3/name = "Bone.003"
 bones/3/parent = -1
@@ -332,8 +373,26 @@ unique_name_in_owner = true
 stream = ExtResource("5_5c2io")
 volume_db = -0.25
 
+[node name="Bump" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("6_7a1se")
+volume_db = -0.25
+
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_4wf4l")
 volume_db = -30.0
 autoplay = true
 parameters/looping = true
+
+[node name="NoiseBackSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_01a4e")
+volume_db = -9.665
+pitch_scale = 0.1
+autoplay = true
+parameters/looping = true
+
+[node name="SpeedAnimation" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_7a1se")
+}
+speed_scale = 3.0
